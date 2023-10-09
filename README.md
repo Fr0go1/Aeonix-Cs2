@@ -12,6 +12,8 @@ To clone you can open command prompt and type `git clone https://github.com/Fr0g
 
 Or if you just want to download you can download it from [Releases](https://github.com/Fr0go1/Aeonix-Cs2/releases/tag/release).
 
+<img src="https://github.com/TKazer/CS2_External/blob/master/Image2.png" width="1200" />
+
 ## Functions
 
 <details>
