@@ -11,7 +11,7 @@ namespace Render
 	{
 		Vec2 CenterPoint = Gui.Window.Size / 2;
 		float Radius = tan(AimControl::AimFov / 180.f * M_PI / 2.f) / tan(LocalEntity.Pawn.Fov / 180.f * M_PI / 2.f) * Gui.Window.Size.x;
-		Gui.Circle(CenterPoint, Radius, ImColor(255, 255, 255, 255), 1);
+		Gui.Circle(CenterPoint, Radius, MenuConfig::AimFovRangeColor, 1);
 	}
 
 	void DrawCrossHair()
