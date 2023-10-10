@@ -176,7 +176,7 @@ void Cheats::Menu()
 
 			ImGui::Checkbox("TriggerBot", &MenuConfig::TriggerBot);
 
-			if (ImGui::Combo("Triggerbot", &MenuConfig::TriggerHotKey, "MENU\0RBUTTON\0XBUTTON1\0XBUTTON2\0CAPITAL\0SHIFT\0CONTROL"))
+			if (ImGui::Combo("Triggerbot Key", &MenuConfig::TriggerHotKey, "MENU\0RBUTTON\0XBUTTON1\0XBUTTON2\0CAPITAL\0SHIFT\0CONTROL"))
 			{
 				TriggerBot::SetHotKey(MenuConfig::TriggerHotKey);
 			}
