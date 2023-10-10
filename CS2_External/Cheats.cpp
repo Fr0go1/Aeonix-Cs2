@@ -5,6 +5,7 @@
 #include "Utils/ConfigSaver.hpp"
 #include "Utils/style.hpp"
 #include "font/IconsFontAwesome5.h"
+#include "TriggerBot.hpp"
 #include "AimBot.hpp"
 #include <Windows.h>
 
@@ -175,7 +176,7 @@ void Cheats::Menu()
 
 			ImGui::Checkbox("TriggerBot", &MenuConfig::TriggerBot);
 
-			if (ImGui::Combo("TriggerKey", &MenuConfig::TriggerHotKey, "MENU\0RBUTTON\0XBUTTON1\0XBUTTON2\0CAPITAL\0SHIFT\0CONTROL"))
+			if (ImGui::Combo("Triggerbot", &MenuConfig::TriggerHotKey, "MENU\0RBUTTON\0XBUTTON1\0XBUTTON2\0CAPITAL\0SHIFT\0CONTROL"))
 			{
 				TriggerBot::SetHotKey(MenuConfig::TriggerHotKey);
 			}
@@ -204,6 +205,8 @@ void Cheats::Menu()
 		ImGui::Checkbox("TeamCheck", &MenuConfig::TeamCheck);
 		ImGui::SameLine();
 		ImGui::Checkbox("BypassOBS", &MenuConfig::OBSBypass);
+		ImGui::SameLine();
+		ImGui::Checkbox("Spectate Esp", &MenuConfig::SpectateEsp);
 
 		ImGui::Text("[INSERT] HideMenu");
 
@@ -273,8 +276,15 @@ void Cheats::Run()
 	CEntity LocalEntity;
 	if (!LocalEntity.UpdateController(LocalControllerAddress))
 		return;
-	if (!LocalEntity.UpdatePawn(LocalPawnAddress))
-		return;
+
+	if (MenuConfig::SpectateEsp) {
+		if (!LocalEntity.UpdatePawn(LocalPawnAddress));
+	}
+	else
+	{
+		if (!LocalEntity.UpdatePawn(LocalPawnAddress))
+			return;
+	}
 
 	// HealthBar Map
 	static std::map<DWORD64, Render::HealthBar> HealthBarMap;
@@ -427,10 +437,6 @@ void Cheats::Run()
 		ImGui::End();
 	}
 
-	// TriggerBot
-	if (MenuConfig::TriggerBot && GetAsyncKeyState(TriggerBot::HotKey))
-		TriggerBot::Run(LocalEntity);
-
 	// HeadShoot Line
 	if (MenuConfig::ShowHeadShootLine)
 		Render::HeadShootLine(LocalEntity, MenuConfig::HeadShootLineColor);
@@ -448,6 +454,12 @@ void Cheats::Run()
 
 	if (MenuConfig::BunnyHop)
 		Bunnyhop::Run(LocalEntity);
+
+	// TriggerBot
+	if (MenuConfig::TriggerBot && GetAsyncKeyState(TriggerBot::HotKey))
+	{
+		TriggerBot::Run(LocalEntity);
+	}
 
 	if (MenuConfig::AimBot && GetAsyncKeyState(AimControl::HotKey))
 	{

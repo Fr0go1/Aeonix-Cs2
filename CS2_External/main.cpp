@@ -4,6 +4,13 @@
 #include <iomanip>
 #include <Shlobj.h>
 #include <filesystem>
+#include <Windows.h>
+
+#define RESET   "\033[0m"
+#define RED     "\033[31m"
+#define GREEN   "\033[32m"
+#define YELLOW  "\033[33m"
+#define BLUE    "\033[34m"
 
 int main()
 {
@@ -53,18 +60,17 @@ int main()
 		goto END;
 	}
 
-	std::cout << "[Game] Pid:" << ProcessMgr.ProcessID << std::endl;
-	std::cout << "[Game] Client:" << gGame.GetClientDLLAddress() << std::endl;
+	std::cout << "[Pid]:" << ProcessMgr.ProcessID << std::endl;
+	std::cout << "[Client]:" << gGame.GetClientDLLAddress() << std::endl;
 
-	std::cout << "Offset:" << std::endl;
-	std::cout << "--EntityList:" << std::setiosflags(std::ios::uppercase) << std::hex << Offset::EntityList << std::endl;
-	std::cout << "--Matrix:" << std::setiosflags(std::ios::uppercase) << std::hex << Offset::Matrix << std::endl;
-	std::cout << "--LocalPlayerController:" << std::setiosflags(std::ios::uppercase) << std::hex << Offset::LocalPlayerController << std::endl;
-	std::cout << "--ViewAngles:" << std::setiosflags(std::ios::uppercase) << std::hex << Offset::ViewAngle << std::endl;
-	std::cout << "--LocalPlayerPawn:" << std::setiosflags(std::ios::uppercase) << std::hex << Offset::LocalPlayerPawn << std::endl;
-	std::cout << "--ForceJump:" << std::setiosflags(std::ios::uppercase) << std::hex << Offset::ForceJump << std::endl;
+	std::cout << "[EntityList]:" << std::setiosflags(std::ios::uppercase) << std::hex << Offset::EntityList << std::endl;
+	std::cout << "[Matrix]:" << std::setiosflags(std::ios::uppercase) << std::hex << Offset::Matrix << std::endl;
+	std::cout << "[LocalPlayerController]:" << std::setiosflags(std::ios::uppercase) << std::hex << Offset::LocalPlayerController << std::endl;
+	std::cout << "[ViewAngles]:" << std::setiosflags(std::ios::uppercase) << std::hex << Offset::ViewAngle << std::endl;
+	std::cout << "[LocalPlayerPawn]:" << std::setiosflags(std::ios::uppercase) << std::hex << Offset::LocalPlayerPawn << std::endl;
+	std::cout << "[ForceJump]:" << std::setiosflags(std::ios::uppercase) << std::hex << Offset::ForceJump << std::endl;
 
-	std::cout << "Runing..." << std::endl;
+	std::cout << "Running..." << std::endl;
 
 	try
 	{

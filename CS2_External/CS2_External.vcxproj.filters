@@ -108,7 +108,7 @@
     <ClInclude Include="Radar\Radar.h">
       <Filter>Cheats\Radar</Filter>
     </ClInclude>
-    <ClInclude Include="TriggerBot.h">
+    <ClInclude Include="TriggerBot.hpp">
       <Filter>Cheats</Filter>
     </ClInclude>
     <ClInclude Include="Utils\ConfigMenu.hpp">
@@ -175,9 +175,6 @@
     </ClCompile>
     <ClCompile Include="Radar\Radar.cpp">
       <Filter>Cheats\Radar</Filter>
-    </ClCompile>
-    <ClCompile Include="TriggerBot.cpp">
-      <Filter>Cheats</Filter>
     </ClCompile>
     <ClCompile Include="Utils\ConfigMenu.cpp">
       <Filter>Utils\ConfigSaver</Filter>

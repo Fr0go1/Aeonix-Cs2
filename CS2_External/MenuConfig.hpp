@@ -10,6 +10,7 @@ namespace MenuConfig
 	inline bool ShowWeaponESP = true;
 	inline bool ShowEyeRay = true;
 	inline bool ShowPlayerName = true;
+	inline bool SpectateEsp = false;
 
 	inline bool ShowAimFovRange = true;
 	inline ImColor AimFovRangeColor = ImColor(230, 230, 230, 255);

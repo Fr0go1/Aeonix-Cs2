@@ -1,7 +1,7 @@
 #include "ConfigMenu.hpp"
 #include "../MenuConfig.hpp"
 #include "ConfigSaver.hpp"
-#include "../TriggerBot.h"
+#include "../TriggerBot.hpp"
 #include "../AimBot.hpp"
 #include <filesystem>
 #include <Shlobj.h>
@@ -71,9 +71,21 @@ namespace ConfigMenu {
 		ImGui::SameLine();
 
 		if (ImGui::Button("Save Selected") && selectedConfig >= 0 && selectedConfig < configFiles.size())
+			ImGui::OpenPopup("##reallySave");
+
+		if (ImGui::BeginPopup("##reallySave"))
 		{
-			std::string selectedConfigFile = configFiles[selectedConfig];
-			MyConfigSaver::SaveConfig(selectedConfigFile);
+			ImGui::TextUnformatted("Are you sure?");
+			if (ImGui::Button("No", { 45.0f, 0.0f }))
+				ImGui::CloseCurrentPopup();
+			ImGui::SameLine();
+			if (ImGui::Button("Yes", { 45.0f, 0.0f }))
+			{
+				std::string selectedConfigFile = configFiles[selectedConfig];
+				MyConfigSaver::SaveConfig(selectedConfigFile);
+				ImGui::CloseCurrentPopup();
+			}
+			ImGui::EndPopup();
 		}
 
 		ImGui::Separator();
@@ -139,6 +151,7 @@ namespace ConfigMenu {
 
 	void ResetToDefault() {
 		MenuConfig::ShowBoneESP = true;
+		MenuConfig::SpectateEsp = false;
 		MenuConfig::ShowBoxESP = true;
 		MenuConfig::ShowHealthBar = true;
 		MenuConfig::ShowWeaponESP = true;
@@ -170,7 +183,7 @@ namespace ConfigMenu {
 		MenuConfig::FovLineSize = 60.0f;
 		TriggerBot::TriggerDelay = 90;
 		AimControl::RCSBullet = 1;
-		TriggerBot::HotKey = VK_LMENU;
+		MenuConfig::TriggerHotKey = 0;
 		AimControl::RCSScale = ImVec2(1.2f, 1.4f);
 		MenuConfig::FovLineColor = ImVec4(55, 55, 55, 220);
 		MenuConfig::LineToEnemyColor = ImVec4(255, 255, 255, 220);

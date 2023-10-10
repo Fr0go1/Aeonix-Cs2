@@ -3,7 +3,7 @@
 #include "Entity.h"
 #include "AimBot.hpp"
 #include "Radar/Radar.h"
-#include "TriggerBot.h"
+#include "TriggerBot.hpp"
 #include "Bunnyhop.hpp"
 
 namespace Cheats

@@ -4,7 +4,7 @@
 #include <sstream>
 #include "ConfigSaver.hpp"
 #include "../MenuConfig.hpp"
-#include "../TriggerBot.h"
+#include "../TriggerBot.hpp"
 #include "../AimBot.hpp"
 #include <Shlobj.h>
 #include <filesystem>
@@ -36,6 +36,7 @@ namespace MyConfigSaver {
         // Example: Save global settings to the file
         configFile << "ShowBoneESP " << MenuConfig::ShowBoneESP << std::endl;
         configFile << "VisibleEsp " << MenuConfig::VisibleEsp << std::endl;
+        configFile << "SpectateEsp " << MenuConfig::SpectateEsp << std::endl;
         configFile << "TriggerDelay " << TriggerBot::TriggerDelay << std::endl;
         configFile << "ShowBoxESP " << MenuConfig::ShowBoxESP << std::endl;
         configFile << "TriggerHotKey " << MenuConfig::TriggerHotKey << std::endl;
@@ -117,6 +118,7 @@ namespace MyConfigSaver {
             if (iss >> key) {
                 if (key == "ShowBoneESP") iss >> MenuConfig::ShowBoneESP;
                 else if (key == "VisibleEsp") iss >> MenuConfig::VisibleEsp;
+                else if (key == "SpectateEsp") iss >> MenuConfig::SpectateEsp;
                 else if (key == "TriggerDelay") iss >> TriggerBot::TriggerDelay;
                 else if (key == "ShowBoxESP") iss >> MenuConfig::ShowBoxESP;
                 else if (key == "TriggerHotKey") iss >> MenuConfig::TriggerHotKey;
