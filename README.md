@@ -3,8 +3,7 @@ CS2 external cheat created using Tkazer's [CS2_External](https://github.com/TKaz
 
 ## INFO
 I made this because im retarded and cant get git on visual studio to work.
-
-I am testing the Visible Bone Esp Function so it might not work correctly.
+If you get banned let me know [here](https://github.com/Fr0go1/Aeonix-Cs2/discussions/5)
 
 ## Download
 
