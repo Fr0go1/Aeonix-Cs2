@@ -205,7 +205,7 @@ void Cheats::Menu()
 		ImGui::SameLine();
 		ImGui::Checkbox("BypassOBS", &MenuConfig::OBSBypass);
 
-		ImGui::Text("[HOME] HideMenu");
+		ImGui::Text("[INSERT] HideMenu");
 
 	}
 	ImGui::End();
@@ -243,7 +243,7 @@ void Cheats::Run()
 	static std::chrono::time_point LastTimePoint = std::chrono::steady_clock::now();
 	auto CurTimePoint = std::chrono::steady_clock::now();
 
-	if (GetAsyncKeyState(VK_HOME)
+	if (GetAsyncKeyState(VK_INSERT)
 		&& CurTimePoint - LastTimePoint >= std::chrono::milliseconds(150))
 	{
 		// Check key state per 150ms once to avoid loop.

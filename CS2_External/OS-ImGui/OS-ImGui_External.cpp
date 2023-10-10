@@ -80,7 +80,7 @@ namespace OSImGui
         if (!CallBack)
             throw OSException("CallBack is empty");
         if (WindowName.empty())
-            Window.Name = "Window";
+            Window.Name = "Aeonix";
 
         Window.Name = WindowName;
         Window.wName = StringToWstring(Window.Name);
