@@ -112,7 +112,7 @@ Or if you just want to download you can download it from [Releases](https://gith
 ## Disclamer
 I have also intergrated some of the features from [AimStar](https://github.com/CowNowK/AimStarCS2)
 
-----------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------
 I would like it if none will be claming this code to be theirs or selling the code as I have noticed that quite a few people have decided to sell [Tkazer's Code/program](https://github.com/TKazer/CS2_External). For example [SmokeyCheats](https://www.youtube.com/watch?v=LIQ4lW78Omc&start=26) is selling the program and i have seen a lot of people reposting the code on unknowncheats without giving credit. It is not my intention to harm anyone but I think it is moraly wrong to sell a cheat or repost for rep when you didnt make it or give credit. But the original creater (Tkazer) has said that its wong but they dont mind.
 
 I dont want credit (it would be nice though) but I want [Tkazer](https://github.com/TKazer) to get the recognition they deserve.
