@@ -122,6 +122,7 @@
     <ClInclude Include="Bunnyhop.hpp" />
     <ClInclude Include="mathstuff.h" />
     <ClInclude Include="font\fontArray.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OS-ImGui\imgui\imgui.cpp">
@@ -189,5 +190,14 @@
   <ItemGroup>
     <Font Include="font\stratum2.ttf" />
     <Font Include="font\fa-regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Aeonix.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon1.ico" />
+    <Image Include="font\sexy.jpg" />
+    <Image Include="font\sexy.ico" />
+    <Image Include="font\icon2.ico" />
   </ItemGroup>
 </Project>
