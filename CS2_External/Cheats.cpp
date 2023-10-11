@@ -8,6 +8,8 @@
 #include "TriggerBot.hpp"
 #include "AimBot.hpp"
 #include <Windows.h>
+#include "ESP_Preview.hpp"
+
 
 void Cheats::Menu()
 {
@@ -108,6 +110,7 @@ void Cheats::Menu()
 			ImGui::ColorEdit4("##CrossHairColor", reinterpret_cast<float*>(&MenuConfig::CrossHairColor), ImGuiColorEditFlags_NoInputs);
 			float CrossHairSizeMin = 1, CrossHairSizeMax = 200;
 			Gui.SliderScalarEx1("CrossHairSize", ImGuiDataType_Float, &MenuConfig::CrossHairSize, &CrossHairSizeMin, &CrossHairSizeMax, "%.1f", ImGuiSliderFlags_None);
+		PreviewESP::EspPreview(); 
 		}
 		else if (tabb == 1) {
 			//aimbot
