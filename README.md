@@ -4,7 +4,26 @@ CS2 external cheat created using Tkazer's [CS2_External](https://github.com/TKaz
 ## INFO
 I made this because im retarded and cant get git on visual studio to work.
 
-If you get banned let me know [here](https://github.com/Fr0go1/Aeonix-Cs2/discussions/5).
+<details>
+<summary>Features that might get you banned</summary>
+  
+- Aimbot/RCS
+  
+- Bunnyhop
+
+</details>
+
+<details>
+<summary>Features that are bugged</summary>
+  
+- Visible esp
+  
+- Bunnyhop v2
+
+- Mouse_event aimbot (currently in the works)
+
+</details>
+If you get banned let me know here https://github.com/Fr0go1/Aeonix-Cs2/discussions/5.
 
 ## Download
 
