@@ -169,6 +169,8 @@ void Cheats::Menu()
 			Gui.SliderScalarEx1("RadarRange", ImGuiDataType_Float, &MenuConfig::RadarRange, &RadarRangeMin, &RadarRangeMax, "%.1f", ImGuiSliderFlags_None);
 
 			ImGui::Checkbox("Bunnyhop", &MenuConfig::BunnyHop);
+			ImGui::SameLine();
+			ImGui::Checkbox("Bunnyhop 2", &MenuConfig::BunnyHop2);
 		}
 		else if (tabb == 3) {
 			//triggerbot
@@ -454,6 +456,9 @@ void Cheats::Run()
 
 	if (MenuConfig::BunnyHop)
 		Bunnyhop::Run(LocalEntity);
+
+	if (MenuConfig::BunnyHop2)
+		Bunnyhop2::Run(LocalEntity);
 
 	// TriggerBot
 	if (MenuConfig::TriggerBot && GetAsyncKeyState(TriggerBot::HotKey))

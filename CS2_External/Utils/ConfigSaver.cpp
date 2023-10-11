@@ -85,6 +85,7 @@ namespace MyConfigSaver {
         configFile << "BoneColorESP " << MenuConfig::BoneColorESP.Value.x << " " << MenuConfig::BoneColorESP.Value.y << " " << MenuConfig::BoneColorESP.Value.z << " " << MenuConfig::BoneColorESP.Value.w << std::endl;
         configFile << "OBSBypass " << MenuConfig::OBSBypass << std::endl;
         configFile << "BunnyHop " << MenuConfig::BunnyHop << std::endl;
+        configFile << "BunnyHop2 " << MenuConfig::BunnyHop2 << std::endl;
         configFile.close();
         std::cout << "Configuration saved to " << filename << std::endl;
     }
@@ -167,6 +168,7 @@ namespace MyConfigSaver {
                 else if (key == "BoneColorESP") iss >> MenuConfig::BoneColorESP.Value.x >> MenuConfig::BoneColorESP.Value.y >> MenuConfig::BoneColorESP.Value.z >> MenuConfig::BoneColorESP.Value.w;
                 else if (key == "OBSBypass") iss >> MenuConfig::OBSBypass;
                 else if (key == "BunnyHop") iss >> MenuConfig::BunnyHop;
+                else if (key == "BunnyHop2") iss >> MenuConfig::BunnyHop2;
             }
         }
 

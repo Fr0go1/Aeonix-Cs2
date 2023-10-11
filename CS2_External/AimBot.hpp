@@ -114,6 +114,5 @@ namespace AimControl
 		}
 
 		gGame.SetViewAngle(Yaw, Pitch);
-		//mouse_event(MOUSEEVENTF_MOVE, Yaw, Pitch, 0, 0);
 	}
 }
