@@ -30,7 +30,7 @@ namespace Bunnyhop2
     inline void Run(const CEntity& Local)
     {
         const bool hasFlagInAir = Local.Pawn.HasFlag(PlayerPawn::Flags::IN_AIR);
-		if (GetAsyncKeyState(VK_SPACE))
+		if (GetAsyncKeyState(VK_SPACE) && !hasFlagInAir)
         {
             // scrolling up
             INPUT inputScrollUp;
@@ -42,7 +42,9 @@ namespace Bunnyhop2
             inputScrollUp.mi.time = 0;
             inputScrollUp.mi.dwExtraInfo = 0;
 
-			SendInput(1, &inputScrollUp, sizeof(INPUT));
+			while (GetAsyncKeyState(VK_SPACE) && !hasFlagInAir) {
+				SendInput(1, &inputScrollUp, sizeof(INPUT));
+			}
         }
     }
 }
