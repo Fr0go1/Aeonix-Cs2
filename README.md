@@ -23,7 +23,7 @@ I made this because im retarded and cant get git on visual studio to work.
 - Mouse_event aimbot (currently in the works)
 
 </details>
-If you get banned let me know [here](https://github.com/Fr0go1/Aeonix-Cs2/discussions/5).
+If you get banned let me know here https://github.com/Fr0go1/Aeonix-Cs2/discussions/5.
 
 ## Download
 
