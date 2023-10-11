@@ -192,7 +192,6 @@
     <ResourceCompile Include="Aeonix.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="icon1.ico" />
     <Image Include="font\sexy.jpg" />
     <Image Include="font\sexy.ico" />
     <Image Include="font\icon2.ico" />
