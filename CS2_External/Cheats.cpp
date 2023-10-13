@@ -108,6 +108,7 @@ void Cheats::Menu()
 			ImGui::ColorEdit4("##CrossHairColor", reinterpret_cast<float*>(&MenuConfig::CrossHairColor), ImGuiColorEditFlags_NoInputs);
 			float CrossHairSizeMin = 1, CrossHairSizeMax = 200;
 			Gui.SliderScalarEx1("CrossHairSize", ImGuiDataType_Float, &MenuConfig::CrossHairSize, &CrossHairSizeMin, &CrossHairSizeMax, "%.1f", ImGuiSliderFlags_None);
+
 		}
 		else if (tabb == 1) {
 			//aimbot
@@ -398,7 +399,7 @@ void Cheats::Run()
 				HealthBarPos = { Rect.x + Rect.z / 2 - 70 / 2,Rect.y - 13 };
 				HealthBarSize = { 70,8 };
 			}
-			Render::DrawHealthBar(EntityAddress, 100, Entity.Controller.Health, HealthBarPos, HealthBarSize, MenuConfig::HealthBarType);
+			Render::DrawHealthBar(EntityAddress, 100, Entity.Pawn.Health, HealthBarPos, HealthBarSize, MenuConfig::HealthBarType);
 		}
 
 		// Draw weaponName

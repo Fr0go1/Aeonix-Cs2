@@ -123,6 +123,7 @@
     <ClInclude Include="mathstuff.h" />
     <ClInclude Include="font\fontArray.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Utils\Format.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OS-ImGui\imgui\imgui.cpp">
