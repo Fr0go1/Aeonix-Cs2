@@ -2,8 +2,6 @@
 CS2 external cheat created using Tkazer's [CS2_External](https://github.com/TKazer/CS2_External).
 
 ## INFO
-I made this because im retarded and cant get git on visual studio to work.
-
 I made a discord server https://discord.gg/2b66kqG2nK
 
 <details>
