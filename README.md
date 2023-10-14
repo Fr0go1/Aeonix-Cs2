@@ -29,7 +29,7 @@ If you get banned let me know here https://github.com/Fr0go1/Aeonix-Cs2/discussi
 
 To clone you can open command prompt and type `git clone https://github.com/Fr0go1/Aeonix-Cs2.git`.
 
-Or if you just want to download you can download it from [Releases](https://github.com/Fr0go1/Aeonix-Cs2/releases/tag/release).
+Or if you just want to download you can download it from [Releases](https://github.com/Fr0go1/Aeonix-Cs2/releases/latest).
 
 <img src="https://github.com/Fr0go1/Aeonix-Cs2/blob/master/image9.png" width="1200" />
 
@@ -130,6 +130,10 @@ Or if you just want to download you can download it from [Releases](https://gith
 
 ## Disclamer
 I have also intergrated some of the features from [AimStar](https://github.com/CowNowK/AimStarCS2)
+
+Added distance esp thanks to mildnsj
+
+Added custom keys thanks to froggy_thicc
 
 -----------------------------------------------------------------------------------------------------
 I would like it if no one will be claming this code to be theirs or selling the code as I have noticed that quite a few people have decided to sell [Tkazer's Code/program](https://github.com/TKazer/CS2_External). For example I have seen a lot of people reposting the code on unknowncheats without giving credit. It is not my intention to harm anyone but I think it is moraly wrong to sell a cheat or repost for rep when you didnt make it or give credit. But the original creater (Tkazer) has said that its okay for his source although mine is a branch of his, I dont agree.
