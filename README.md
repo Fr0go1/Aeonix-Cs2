@@ -29,7 +29,7 @@ If you get banned let me know here https://github.com/Fr0go1/Aeonix-Cs2/discussi
 
 To clone you can open command prompt and type `git clone https://github.com/Fr0go1/Aeonix-Cs2.git`.
 
-Or if you just want to download you can download it from [Releases](https://github.com/Fr0go1/Aeonix-Cs2/releases/tag/release).
+Or if you just want to download you can download it from [Releases]((https://github.com/Fr0go1/Aeonix-Cs2/releases/latest)).
 
 <img src="https://github.com/Fr0go1/Aeonix-Cs2/blob/master/image9.png" width="1200" />
 
