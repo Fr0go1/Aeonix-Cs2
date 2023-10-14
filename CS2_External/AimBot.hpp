@@ -72,5 +72,17 @@ namespace AimControl
 		{
 			gGame.SetViewAngle(Yaw, Pitch);
 		}
+
+		// Referenced N4te2k's fork; https://github.com/N4te2k/CS2_External
+		/*
+		Vec2 ScreenPos;
+		if (gGame.View.WorldToScreen(Vec3(Yaw, Pitch, 0.0f), ScreenPos))
+		{
+			mouse_event(MOUSEEVENTF_MOVE | MOUSEEVENTF_ABSOLUTE,
+				(int)(ScreenPos.x * 65535.0f / GetSystemMetrics(SM_CXSCREEN)),
+				(int)(ScreenPos.y * 65535.0f / GetSystemMetrics(SM_CYSCREEN)),
+				0, 0);
+		}*/
+
 	}
 }

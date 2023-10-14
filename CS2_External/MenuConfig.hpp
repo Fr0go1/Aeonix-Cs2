@@ -62,10 +62,22 @@ namespace MenuConfig
 	inline ImColor LineToEnemyColor = ImColor(255, 255, 255, 220);
 
 	inline bool ShowCrossHair = true;
-	inline ImColor CrossHairColor = ImColor(45, 45, 45, 255);
-	inline float CrossHairSize = 150;
 
 	inline float RadarBgAlpha = 0.3f;;
 
 	inline bool ShowDistance = true;
+
+}
+
+namespace CrosshairConfig
+{
+	inline float CrossHairSize = 75;
+
+	inline ImColor CrossHairColor = ImColor(0, 255, 0, 255);
+	inline bool drawDot = true;
+	inline bool tStyle = false;
+	inline int HorizontalLength = 6;
+	inline int VerticalLength = 6;
+	inline bool drawOutLine = true;
+	inline int Gap = 8;
 }

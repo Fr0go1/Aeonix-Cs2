@@ -128,9 +128,22 @@ void Cheats::Menu()
 
 			ImGui::Checkbox("CrossHair", &MenuConfig::ShowCrossHair);
 			ImGui::SameLine();
-			ImGui::ColorEdit4("##CrossHairColor", reinterpret_cast<float*>(&MenuConfig::CrossHairColor), ImGuiColorEditFlags_NoInputs);
-			float CrossHairSizeMin = 1, CrossHairSizeMax = 200;
-			Gui.SliderScalarEx1("CrossHairSize", ImGuiDataType_Float, &MenuConfig::CrossHairSize, &CrossHairSizeMin, &CrossHairSizeMax, "%.1f", ImGuiSliderFlags_None);
+			ImGui::ColorEdit4("##CrossHairColor", reinterpret_cast<float*>(&CrosshairConfig::CrossHairColor), ImGuiColorEditFlags_NoInputs);
+			ImGui::SameLine();
+			if (ImGui::Button("Settings"))
+				ImGui::OpenPopup("##Settings");
+			if (ImGui::BeginPopup("##Settings"))
+			{
+				ImGui::TextUnformatted("Settings");
+				ImGui::Checkbox("Center Dot", &CrosshairConfig::drawDot);
+				ImGui::SliderInt("Horizontal Length", &CrosshairConfig::HorizontalLength, 0, 75, "%d");
+				ImGui::SliderInt("Vertical Length", &CrosshairConfig::VerticalLength, 0, 75, "%d");
+				ImGui::SliderInt("Gap", &CrosshairConfig::Gap, 0, 35, "%d");
+				ImGui::Checkbox("Outline", &CrosshairConfig::drawOutLine);
+				ImGui::Checkbox("T Style", &CrosshairConfig::tStyle);
+				ImGui::EndPopup();
+			}
+
 			ImGui::Checkbox("Distance Esp", &MenuConfig::ShowDistance);
 
 		}
@@ -272,6 +285,14 @@ void Cheats::RadarSetting(Base_Radar& Radar)
 
 	Radar.ShowCrossLine = MenuConfig::ShowRadarCrossLine;
 	Radar.Opened = true;
+}
+
+void Cheats::RenderCrossHair(ImDrawList* drawList) noexcept
+{
+	if (!MenuConfig::ShowCrossHair)
+		return;
+
+	Render::DrawCrossHair(drawList, ImVec2(ImGui::GetIO().DisplaySize.x / 2, ImGui::GetIO().DisplaySize.y / 2), ImGui::ColorConvertFloat4ToU32(CrosshairConfig::CrossHairColor));
 }
 
 void Cheats::Run()
@@ -439,7 +460,7 @@ void Cheats::Run()
 			char buffer[0x48];
 			sprintf_s(buffer, "%im", distance);
 			std::string dis_str = buffer;
-			Gui.StrokeText(dis_str, { Rect.x + Rect.z + 4, Rect.y }, ImColor(255, 255, 255, 255), 14, false);
+			Gui.StrokeText(dis_str, { Rect.x + Rect.z + 4, Rect.y }, ImColor(255, 255, 255, 255), 12, false);
 		}
 
 		// Draw weaponName
@@ -484,9 +505,10 @@ void Cheats::Run()
 	if (MenuConfig::ShowHeadShootLine)
 		Render::HeadShootLine(LocalEntity, MenuConfig::HeadShootLineColor);
 
-	// CrossHair
-	if (MenuConfig::ShowCrossHair)
-		Render::DrawCrossHair();
+	if (MenuConfig::ShowCrossHair) {
+		RenderCrossHair(ImGui::GetBackgroundDrawList());
+	}
+
 	// Fov circle
 	if (MenuConfig::ShowAimFovRange)
 		Render::DrawFovCircle(LocalEntity);

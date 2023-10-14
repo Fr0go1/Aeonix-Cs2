@@ -4,6 +4,9 @@
 #include <chrono>
 #include <map>
 #include "Entity.h"
+#include "MenuConfig.hpp"
+#define IMGUI_DEFINE_MATH_OPERATORS
+#include "OS-ImGui/imgui/imgui_internal.h"
 
 namespace Render
 {
@@ -14,11 +17,49 @@ namespace Render
 		Gui.Circle(CenterPoint, Radius, MenuConfig::AimFovRangeColor, 1);
 	}
 
-	void DrawCrossHair()
+	void DrawCrossHair(ImDrawList* drawList, const ImVec2& pos, ImU32 color) noexcept
 	{
-		Vec2 SightPos = Gui.Window.Size / 2;
-		Gui.Line({ SightPos.x - MenuConfig::CrossHairSize,SightPos.y }, { SightPos.x + MenuConfig::CrossHairSize,SightPos.y }, MenuConfig::CrossHairColor, 1);
-		Gui.Line({ SightPos.x,SightPos.y - MenuConfig::CrossHairSize }, { SightPos.x ,SightPos.y + MenuConfig::CrossHairSize }, MenuConfig::CrossHairColor, 1);
+		int BorderWidth = 2;
+		int DotSize = 1;
+		int gap = CrosshairConfig::Gap / 2;
+
+		int oulineGap = gap - 1;
+
+		ImVec2 offset1{ 1,1 };
+		ImVec2 offset2{ 2,2 };
+
+		//===== Outline =====
+		if (CrosshairConfig::drawOutLine)
+		{
+			//dot
+			if (CrosshairConfig::drawDot)
+				drawList->AddRectFilled(ImVec2(pos.x - offset1.x, pos.y - offset1.y), ImVec2(pos.x + offset2.x, pos.y + offset2.y), color & IM_COL32_A_MASK);
+			//left
+			drawList->AddRectFilled(ImVec2(pos.x - (oulineGap + BorderWidth + CrosshairConfig::HorizontalLength), pos.y - 1), ImVec2(pos.x - oulineGap, pos.y + 2), color & IM_COL32_A_MASK);
+			//right
+			drawList->AddRectFilled(ImVec2(pos.x + (oulineGap + DotSize), pos.y - 1), ImVec2(pos.x + (oulineGap + DotSize + BorderWidth + CrosshairConfig::HorizontalLength), pos.y + 2), color & IM_COL32_A_MASK);
+			//top
+			if (!CrosshairConfig::tStyle)
+				drawList->AddRectFilled(ImVec2(pos.x - 1, pos.y - (oulineGap + BorderWidth + CrosshairConfig::VerticalLength)), ImVec2(pos.x + 2, pos.y - oulineGap), color & IM_COL32_A_MASK);
+			//bottom
+			drawList->AddRectFilled(ImVec2(pos.x - 1, pos.y + oulineGap + DotSize), ImVec2(pos.x + 2, pos.y + (oulineGap + DotSize + BorderWidth + CrosshairConfig::VerticalLength)), color & IM_COL32_A_MASK);
+		}
+
+		//===== Crosshair =====
+		// dot
+		if (CrosshairConfig::drawDot)
+			drawList->AddRectFilled(ImVec2(pos.x, pos.y), ImVec2(pos.x + offset1.x, pos.y + offset1.y), color);
+		// left
+		drawList->AddRectFilled(ImVec2(pos.x - (gap + CrosshairConfig::HorizontalLength), pos.y), ImVec2(pos.x - gap, pos.y + 1), color);
+		// right
+		drawList->AddRectFilled(ImVec2(pos.x + gap + DotSize, pos.y), ImVec2(pos.x + (gap + DotSize + CrosshairConfig::HorizontalLength), pos.y + 1), color);
+		// top
+		if (!CrosshairConfig::tStyle)
+			drawList->AddRectFilled(ImVec2(pos.x, pos.y - (gap + CrosshairConfig::VerticalLength)), ImVec2(pos.x + 1, pos.y - gap), color);
+		// bottom
+		drawList->AddRectFilled(ImVec2(pos.x, pos.y + gap + DotSize), ImVec2(pos.x + 1, pos.y + (gap + DotSize + CrosshairConfig::VerticalLength)), color);
+
+
 	}
 
 	void LineToEnemy(ImVec4 Rect, ImColor Color, float Thickness)

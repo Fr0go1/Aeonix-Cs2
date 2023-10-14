@@ -190,8 +190,6 @@ namespace ConfigMenu {
 		MenuConfig::FovLineColor = ImVec4(55, 55, 55, 220);
 		MenuConfig::LineToEnemyColor = ImVec4(255, 255, 255, 220);
 		MenuConfig::ShowCrossHair = true;
-		MenuConfig::CrossHairColor = ImColor(45, 45, 45, 255);
-		MenuConfig::CrossHairSize = 150;
 		MenuConfig::RadarBgAlpha = 0.3f;
 		MenuConfig::ShowAimFovRange = true;
 		MenuConfig::AimFovRangeColor = ImColor(230, 230, 230, 255);
@@ -199,5 +197,13 @@ namespace ConfigMenu {
 		MenuConfig::BunnyHop = false;
 		MenuConfig::BunnyHop2 = false;
 		MenuConfig::ShowDistance = true;
+		CrosshairConfig::CrossHairColor = ImColor(0, 255, 0, 255);
+		CrosshairConfig::CrossHairSize = 75;
+		CrosshairConfig::drawDot = true;
+		CrosshairConfig::tStyle = false;
+		CrosshairConfig::HorizontalLength = 6;
+		CrosshairConfig::VerticalLength = 6;
+		CrosshairConfig::drawOutLine = true;
+		CrosshairConfig::Gap = 8;
 	}
 }

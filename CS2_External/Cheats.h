@@ -10,5 +10,6 @@ namespace Cheats
 {
 	void Menu();
 	void RadarSetting(Base_Radar& Radar);
+	void RenderCrossHair(ImDrawList* drawList) noexcept;
 	void Run();
 }
