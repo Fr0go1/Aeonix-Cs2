@@ -86,6 +86,7 @@ namespace MyConfigSaver {
         configFile << "OBSBypass " << MenuConfig::OBSBypass << std::endl;
         configFile << "BunnyHop " << MenuConfig::BunnyHop << std::endl;
         configFile << "BunnyHop2 " << MenuConfig::BunnyHop2 << std::endl;
+        configFile << "ShowDistance " << MenuConfig::ShowDistance << std::endl;
         configFile.close();
         std::cout << "Configuration saved to " << filename << std::endl;
     }
@@ -169,6 +170,7 @@ namespace MyConfigSaver {
                 else if (key == "OBSBypass") iss >> MenuConfig::OBSBypass;
                 else if (key == "BunnyHop") iss >> MenuConfig::BunnyHop;
                 else if (key == "BunnyHop2") iss >> MenuConfig::BunnyHop2;
+                else if (key == "ShowDistance") iss >> MenuConfig::ShowDistance;
             }
         }
 

@@ -8,6 +8,29 @@
 #include "TriggerBot.hpp"
 #include "AimBot.hpp"
 #include <Windows.h>
+#include <cmath>
+#include "Utils/keys.cpp"
+#include <thread>
+
+static void HotKey(int* k, const ImVec2& size_arg = ImVec2(0, 0))
+{
+	static bool waitingforkey = false;
+	if (waitingforkey == false) {
+		if (ImGui::Button(KeyNames[*k], size_arg))
+			waitingforkey = true;
+	}
+	else if (waitingforkey == true) {
+		ImGui::Button("...", size_arg);
+		std::this_thread::sleep_for(std::chrono::milliseconds(20));
+		for (auto& Key : KeyCodes)
+		{
+			if (GetAsyncKeyState(Key)) {
+				*k = Key;
+				waitingforkey = false;
+			}
+		}
+	}
+}
 
 void Cheats::Menu()
 {
@@ -108,6 +131,7 @@ void Cheats::Menu()
 			ImGui::ColorEdit4("##CrossHairColor", reinterpret_cast<float*>(&MenuConfig::CrossHairColor), ImGuiColorEditFlags_NoInputs);
 			float CrossHairSizeMin = 1, CrossHairSizeMax = 200;
 			Gui.SliderScalarEx1("CrossHairSize", ImGuiDataType_Float, &MenuConfig::CrossHairSize, &CrossHairSizeMin, &CrossHairSizeMax, "%.1f", ImGuiSliderFlags_None);
+			ImGui::Checkbox("Distance Esp", &MenuConfig::ShowDistance);
 
 		}
 		else if (tabb == 1) {
@@ -115,6 +139,8 @@ void Cheats::Menu()
 			ImGui::Text("-Aimbot-");
 
 			ImGui::Checkbox("AimBot", &MenuConfig::AimBot);
+			ImGui::SameLine();
+			HotKey(&AimControl::HotKey, ImVec2(95, 28));
 
 			if (ImGui::Combo("AimKey", &MenuConfig::AimBotHotKey, "MENU\0RBUTTON\0XBUTTON1\0XBUTTON2\0CAPITAL\0SHIFT\0CONTROL"))
 			{
@@ -178,6 +204,8 @@ void Cheats::Menu()
 			ImGui::Text("-Triggerbot-");
 
 			ImGui::Checkbox("TriggerBot", &MenuConfig::TriggerBot);
+			ImGui::SameLine();
+			HotKey(&TriggerBot::HotKey, ImVec2(95, 28));
 
 			if (ImGui::Combo("Triggerbot Key", &MenuConfig::TriggerHotKey, "MENU\0RBUTTON\0XBUTTON1\0XBUTTON2\0CAPITAL\0SHIFT\0CONTROL"))
 			{
@@ -400,6 +428,15 @@ void Cheats::Run()
 				HealthBarSize = { 70,8 };
 			}
 			Render::DrawHealthBar(EntityAddress, 100, Entity.Pawn.Health, HealthBarPos, HealthBarSize, MenuConfig::HealthBarType);
+		}
+
+		if (MenuConfig::ShowDistance)
+		{
+			int distance = static_cast<int>(Entity.Pawn.Pos.DistanceTo(LocalEntity.Pawn.Pos) / 100);
+			char buffer[0x48];
+			sprintf_s(buffer, "%im", distance);
+			std::string dis_str = buffer;
+			Gui.StrokeText(dis_str, { Rect.x + Rect.z + 4, Rect.y }, ImColor(255, 255, 255, 255), 14, false);
 		}
 
 		// Draw weaponName

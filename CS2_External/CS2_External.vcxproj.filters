@@ -124,6 +124,7 @@
     <ClInclude Include="font\fontArray.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Utils\Format.hpp" />
+    <ClInclude Include="globals.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OS-ImGui\imgui\imgui.cpp">
@@ -184,6 +185,7 @@
       <Filter>Utils\ConfigSaver</Filter>
     </ClCompile>
     <ClCompile Include="Cheats.cpp" />
+    <ClCompile Include="Utils\keys.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="font\stratum2.ttf" />

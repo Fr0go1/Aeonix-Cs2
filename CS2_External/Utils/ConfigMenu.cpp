@@ -197,5 +197,6 @@ namespace ConfigMenu {
 		MenuConfig::OBSBypass = true;
 		MenuConfig::BunnyHop = false;
 		MenuConfig::BunnyHop2 = false;
+		MenuConfig::ShowDistance = true;
 	}
 }

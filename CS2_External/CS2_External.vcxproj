@@ -148,6 +148,7 @@
     <ClInclude Include="font\fontArray.h" />
     <ClInclude Include="font\IconsFontAwesome5.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="globals.cpp" />
     <ClInclude Include="mathstuff.h" />
     <ClInclude Include="MenuConfig.hpp" />
     <ClInclude Include="Offsets.h" />
@@ -195,6 +196,7 @@
     <ClCompile Include="Cheats.cpp" />
     <ClCompile Include="Utils\ConfigMenu.cpp" />
     <ClCompile Include="Utils\ConfigSaver.cpp" />
+    <ClCompile Include="Utils\keys.cpp" />
     <ClCompile Include="Utils\MemorySearch.cpp" />
   </ItemGroup>
   <ItemGroup>
