@@ -130,7 +130,9 @@ Or if you just want to download you can download it from [Releases](https://gith
 
 ## Disclamer
 I have also intergrated some of the features from [AimStar](https://github.com/CowNowK/AimStarCS2)
+
 Added distance esp thanks to mildnsj
+
 Added custom keys thanks to froggy_thicc
 
 -----------------------------------------------------------------------------------------------------
