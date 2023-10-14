@@ -192,6 +192,7 @@ namespace ConfigMenu {
 		MenuConfig::ShowCrossHair = true;
 		MenuConfig::CrossHairColor = ImColor(45, 45, 45, 255);
 		MenuConfig::CrossHairSize = 150;
+		MenuConfig::RadarBgAlpha = 0.3f;
 		MenuConfig::ShowAimFovRange = true;
 		MenuConfig::AimFovRangeColor = ImColor(230, 230, 230, 255);
 		MenuConfig::OBSBypass = true;

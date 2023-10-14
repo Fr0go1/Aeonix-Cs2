@@ -190,10 +190,12 @@ void Cheats::Menu()
 
 			float ProportionMin = 500.f, ProportionMax = 3300.f;
 			float RadarRangeMin = 100.f, RadarRangeMax = 300.f;
+			float RadarBgAlphaMin = 0.0f, RadarBgAlphaMax = 1.0f;
 			float RadarPointSizeProportionMin = 0.8f, RadarPointSizeProportionMax = 2.f;
 			Gui.SliderScalarEx1("PointSize", ImGuiDataType_Float, &MenuConfig::RadarPointSizeProportion, &RadarPointSizeProportionMin, &RadarPointSizeProportionMax, "%.1f", ImGuiSliderFlags_None);
 			Gui.SliderScalarEx1("Proportion", ImGuiDataType_Float, &MenuConfig::Proportion, &ProportionMin, &ProportionMax, "%.1f", ImGuiSliderFlags_None);
 			Gui.SliderScalarEx1("RadarRange", ImGuiDataType_Float, &MenuConfig::RadarRange, &RadarRangeMin, &RadarRangeMax, "%.1f", ImGuiSliderFlags_None);
+			Gui.SliderScalarEx1("RadarBgAlpha", ImGuiDataType_Float, &MenuConfig::RadarBgAlpha, &RadarBgAlphaMin, &RadarBgAlphaMax, "%.3f", ImGuiSliderFlags_None);
 
 			ImGui::Checkbox("Bunnyhop", &MenuConfig::BunnyHop);
 			ImGui::SameLine();
@@ -238,6 +240,9 @@ void Cheats::Menu()
 		ImGui::Checkbox("BypassOBS", &MenuConfig::OBSBypass);
 		ImGui::SameLine();
 		ImGui::Checkbox("Spectate Esp", &MenuConfig::SpectateEsp);
+		if (ImGui::Button("Discord")) {
+			std::system("cmd.exe /c start https://discord.gg/2b66kqG2nK");
+		}
 
 		ImGui::Text("[INSERT] HideMenu");
 
@@ -247,7 +252,7 @@ void Cheats::Menu()
 
 void Cheats::RadarSetting(Base_Radar& Radar)
 {
-	ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.0f, 0.0f, 0.0f, 0.30f));
+	ImGui::SetNextWindowBgAlpha(MenuConfig::RadarBgAlpha);
 
 	// Radar window
 	ImGui::Begin("Radar", 0, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar);
@@ -267,8 +272,6 @@ void Cheats::RadarSetting(Base_Radar& Radar)
 
 	Radar.ShowCrossLine = MenuConfig::ShowRadarCrossLine;
 	Radar.Opened = true;
-
-	ImGui::PopStyleColor();
 }
 
 void Cheats::Run()

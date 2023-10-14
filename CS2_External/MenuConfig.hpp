@@ -65,5 +65,7 @@ namespace MenuConfig
 	inline ImColor CrossHairColor = ImColor(45, 45, 45, 255);
 	inline float CrossHairSize = 150;
 
+	inline float RadarBgAlpha = 0.3f;;
+
 	inline bool ShowDistance = true;
 }

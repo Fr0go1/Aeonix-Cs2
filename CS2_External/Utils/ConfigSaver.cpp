@@ -87,6 +87,7 @@ namespace MyConfigSaver {
         configFile << "BunnyHop " << MenuConfig::BunnyHop << std::endl;
         configFile << "BunnyHop2 " << MenuConfig::BunnyHop2 << std::endl;
         configFile << "ShowDistance " << MenuConfig::ShowDistance << std::endl;
+        configFile << "RadarBgAlpha " << MenuConfig::RadarBgAlpha << std::endl;
         configFile.close();
         std::cout << "Configuration saved to " << filename << std::endl;
     }
@@ -171,6 +172,7 @@ namespace MyConfigSaver {
                 else if (key == "BunnyHop") iss >> MenuConfig::BunnyHop;
                 else if (key == "BunnyHop2") iss >> MenuConfig::BunnyHop2;
                 else if (key == "ShowDistance") iss >> MenuConfig::ShowDistance;
+                else if (key == "RadarBgAlpha") iss >> MenuConfig::RadarBgAlpha;
             }
         }
 
