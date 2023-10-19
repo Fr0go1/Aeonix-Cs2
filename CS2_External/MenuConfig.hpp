@@ -27,7 +27,6 @@ namespace MenuConfig
 	inline int  HealthBarType = 0;
 
 	inline ImColor BoneColor = ImColor(255, 255, 255, 255);
-	inline ImColor BoneColorESP = ImColor(255, 255, 255, 255);
 	inline ImColor BoneVisColor = ImColor(0, 0, 255, 255);
 	inline ImColor BoxColor = ImColor(255, 255, 255, 255);
 	inline ImColor EyeRayColor = ImColor(255, 0, 0, 255);
@@ -67,6 +66,11 @@ namespace MenuConfig
 
 	inline bool ShowDistance = true;
 
+	inline int styleee = 1;
+	inline int selectedStyleIndex = 0;
+
+	inline bool EspVisCheck = true;
+	inline ImColor VisibleColor = ImColor(255, 255, 0, 255);
 }
 
 namespace CrosshairConfig

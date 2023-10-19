@@ -34,231 +34,249 @@ static void HotKey(int* k, const ImVec2& size_arg = ImVec2(0, 0))
 
 void Cheats::Menu()
 {
-	static int selectedStyleIndex = 0;
 	static int tabb = 0;
-	static int styleee = 1;
+	//ImGui::ShowMetricsWindow();
 
-	ImGui::Begin("Aeonix",nullptr,ImGuiWindowFlags_AlwaysAutoResize);
-	{	
-		//ImGui::SetNextWindowSize(ImVec2(900, 900));
-		//ImGui::ShowMetricsWindow();
+	ImGui::SetNextWindowSize(ImVec2(625, 645));
 
-		if (styleee == 3) {
-			SetupImGuiStyle1();
-		}
-		else if (styleee == 2) {
-			SetupImGuiStyle2();
-		}
-		else if (styleee == 1) {
-			SetupImGuiStyle3();
-		}
+	ImGui::Begin("Aeonix",nullptr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize);
+	{
+		if (ImGui::BeginChild(1, ImVec2(115, 600), true)) {
 
-		if (ImGui::Button(ICON_FA_EYE" Visuals")) {
-			tabb = 0;
-		}
-		ImGui::SameLine(0, 1);
-
-		if (ImGui::Button(ICON_FA_USER_CIRCLE" Aimbot")) {
-			tabb = 1;
-		}
-		ImGui::SameLine(0, 1);
-
-		if (ImGui::Button(ICON_FA_FILE_CODE" Misc")) {
-			tabb = 2;
-		}
-		ImGui::SameLine(0, 1);
-
-		if (ImGui::Button(ICON_FA_HAND_POINTER" Triggerbot")) {
-			tabb = 3;
-		}
-		ImGui::SameLine(0, 1);
-
-		if (ImGui::Button(ICON_FA_FOLDER_OPEN" Config")) {
-			tabb = 4;
-		}
-
-		ImGui::Separator();
-
-		if (tabb == 0) {
-			//esp
-			ImGui::Text("-Visuals-");
-
-			ImGui::Checkbox("BoxESP", &MenuConfig::ShowBoxESP);
-			ImGui::SameLine();
-			ImGui::ColorEdit4("##BoxColor", reinterpret_cast<float*>(&MenuConfig::BoxColor), ImGuiColorEditFlags_NoInputs);
-
-			ImGui::Combo("BoxType", &MenuConfig::BoxType, "Normal\0Dynamic");
-
-			ImGui::Checkbox("VisibleBoneESP", &MenuConfig::VisibleEsp);
-			ImGui::SameLine();
-			ImGui::ColorEdit4("##BoneVisColor", reinterpret_cast<float*>(&MenuConfig::BoneVisColor), ImGuiColorEditFlags_NoInputs);
-
-			ImGui::Checkbox("BoneESP", &MenuConfig::ShowBoneESP);
-			ImGui::SameLine();
-			ImGui::ColorEdit4("##BoneColor", reinterpret_cast<float*>(&MenuConfig::BoneColor), ImGuiColorEditFlags_NoInputs);
-
-			ImGui::Text("BoneEspColor (for debugging)");
-			ImGui::SameLine();
-			ImGui::ColorEdit4("##BoneColorESP", reinterpret_cast<float*>(&MenuConfig::BoneColorESP), ImGuiColorEditFlags_NoInputs);
-
-
-			ImGui::Checkbox("EyeRay", &MenuConfig::ShowEyeRay);
-			ImGui::SameLine();
-			ImGui::ColorEdit4("##EyeRay", reinterpret_cast<float*>(&MenuConfig::EyeRayColor), ImGuiColorEditFlags_NoInputs);
-
-			ImGui::Checkbox("HealthBar", &MenuConfig::ShowHealthBar);
-			ImGui::Combo("HealthBarType", &MenuConfig::HealthBarType, "Vetical\0Horizontal");
-
-			ImGui::Checkbox("WeaponText", &MenuConfig::ShowWeaponESP);
-			ImGui::Checkbox("PlayerName", &MenuConfig::ShowPlayerName);
-
-			ImGui::Checkbox("HeadShootLine", &MenuConfig::ShowHeadShootLine);
-			ImGui::SameLine();
-			ImGui::ColorEdit4("##HeadShootLineColor", reinterpret_cast<float*>(&MenuConfig::HeadShootLineColor), ImGuiColorEditFlags_NoInputs);
-
-			ImGui::Checkbox("FovLine", &MenuConfig::ShowFovLine);
-			ImGui::SameLine();
-			ImGui::ColorEdit4("##FovLineColor", reinterpret_cast<float*>(&MenuConfig::FovLineColor), ImGuiColorEditFlags_NoInputs);
-			float FovLineSizeMin = 20.f, FovLineSizeMax = 120.f;
-			Gui.SliderScalarEx1("FovLineSize", ImGuiDataType_Float, &MenuConfig::FovLineSize, &FovLineSizeMin, &FovLineSizeMax, "%.1f", ImGuiSliderFlags_None);
-
-			ImGui::Checkbox("LineToEnemy", &MenuConfig::ShowLineToEnemy);
-			ImGui::SameLine();
-			ImGui::ColorEdit4("##LineToEnemyColor", reinterpret_cast<float*>(&MenuConfig::LineToEnemyColor), ImGuiColorEditFlags_NoInputs);
-
-			ImGui::Checkbox("CrossHair", &MenuConfig::ShowCrossHair);
-			ImGui::SameLine();
-			ImGui::ColorEdit4("##CrossHairColor", reinterpret_cast<float*>(&CrosshairConfig::CrossHairColor), ImGuiColorEditFlags_NoInputs);
-			ImGui::SameLine();
-			if (ImGui::Button("Settings"))
-				ImGui::OpenPopup("##Settings");
-			if (ImGui::BeginPopup("##Settings"))
-			{
-				ImGui::TextUnformatted("Settings");
-				ImGui::Checkbox("Center Dot", &CrosshairConfig::drawDot);
-				ImGui::SliderInt("Horizontal Length", &CrosshairConfig::HorizontalLength, 0, 75, "%d");
-				ImGui::SliderInt("Vertical Length", &CrosshairConfig::VerticalLength, 0, 75, "%d");
-				ImGui::SliderInt("Gap", &CrosshairConfig::Gap, 0, 35, "%d");
-				ImGui::Checkbox("Outline", &CrosshairConfig::drawOutLine);
-				ImGui::Checkbox("T Style", &CrosshairConfig::tStyle);
-				ImGui::EndPopup();
+			if (MenuConfig::styleee == 3) {
+				SetupImGuiStyle1();
+			}
+			else if (MenuConfig::styleee == 2) {
+				SetupImGuiStyle2();
+			}
+			else if (MenuConfig::styleee == 1) {
+				SetupImGuiStyle3();
 			}
 
-			ImGui::Checkbox("Distance Esp", &MenuConfig::ShowDistance);
-
-		}
-		else if (tabb == 1) {
-			//aimbot
-			ImGui::Text("-Aimbot-");
-
-			ImGui::Checkbox("AimBot", &MenuConfig::AimBot);
-			ImGui::SameLine();
-			HotKey(&AimControl::HotKey, ImVec2(95, 28));
-
-			if (ImGui::Combo("AimKey", &MenuConfig::AimBotHotKey, "MENU\0RBUTTON\0XBUTTON1\0XBUTTON2\0CAPITAL\0SHIFT\0CONTROL"))
-			{
-				AimControl::SetHotKey(MenuConfig::AimBotHotKey);
+			if (ImGui::Button(ICON_FA_EYE" Visuals", ImVec2(100, 30))) {
+				tabb = 0;
 			}
+			ImGui::Spacing();
+			if (ImGui::Button(ICON_FA_USER_CIRCLE" Aimbot", ImVec2(100, 30))) {
+				tabb = 1;
+			}
+			ImGui::Spacing();
+			if (ImGui::Button(ICON_FA_FILE_CODE" Misc", ImVec2(100, 30))) {
+				tabb = 2;
+			}
+			ImGui::Spacing();
+			if (ImGui::Button(ICON_FA_HAND_POINTER" Triggerbot", ImVec2(100, 30))) {
+				tabb = 3;
+			}
+			ImGui::Spacing();
+			if (ImGui::Button(ICON_FA_FOLDER_OPEN" Config", ImVec2(100, 30))) {
+				tabb = 4;
+			}
+			ImGui::Spacing();
+			if (ImGui::Button(ICON_FA_SUN" Settings", ImVec2(100, 30))) {
+				tabb = 5;
+			}
+		}
+		ImGui::EndChild();
 
-			float FovMin = 0.1f, FovMax = 89.f;
-			float SmoothMin = 0.1f, SmoothMax = 1.f;
-			Gui.SliderScalarEx1("AimFov", ImGuiDataType_Float, &AimControl::AimFov, &FovMin, &FovMax, "%.1f", ImGuiSliderFlags_None);
-			ImGui::Checkbox("FovCircle", &MenuConfig::ShowAimFovRange);
-			ImGui::SameLine();
-			ImGui::ColorEdit4("##FovCircleColor", reinterpret_cast<float*>(&MenuConfig::AimFovRangeColor), ImGuiColorEditFlags_NoInputs);
-			Gui.SliderScalarEx1("Smooth", ImGuiDataType_Float, &AimControl::Smooth, &SmoothMin, &SmoothMax, "%.1f", ImGuiSliderFlags_None);
-			if (ImGui::Combo("AimPos", &MenuConfig::AimPosition, "Head\0Neck\0Spine"))
-			{
-				switch (MenuConfig::AimPosition)
+		ImGui::SameLine();
+
+		if (ImGui::BeginChild(2, ImVec2(485, 600), true)) {
+
+			if (tabb == 0) {
+				//esp
+				ImGui::Text("-Visuals-");
+
+				ImGui::Checkbox("BoxESP", &MenuConfig::ShowBoxESP);
+				ImGui::SameLine();
+				ImGui::ColorEdit4("##BoxColor", reinterpret_cast<float*>(&MenuConfig::BoxColor), ImGuiColorEditFlags_NoInputs);
+				ImGui::SameLine();
+				if (ImGui::Button("VisCheck"))
+					ImGui::OpenPopup("##boxvis");
+				if (ImGui::BeginPopup("##boxvis"))
 				{
+					ImGui::TextUnformatted("Settings");
+					ImGui::Checkbox("VisibleBoxESP", &MenuConfig::EspVisCheck);
+					ImGui::SameLine();
+					ImGui::ColorEdit4("##BoxVisColor", reinterpret_cast<float*>(&MenuConfig::VisibleColor), ImGuiColorEditFlags_NoInputs);
+					ImGui::EndPopup();
+				}
+
+				ImGui::Combo("BoxType", &MenuConfig::BoxType, "Normal\0Dynamic");
+
+				ImGui::Checkbox("BoneESP", &MenuConfig::ShowBoneESP);
+				ImGui::SameLine();
+				ImGui::ColorEdit4("##BoneColor", reinterpret_cast<float*>(&MenuConfig::BoneColor), ImGuiColorEditFlags_NoInputs);
+				ImGui::SameLine();
+				if (ImGui::Button("VisCheck"))
+					ImGui::OpenPopup("##bonevis");
+				if (ImGui::BeginPopup("##bonevis"))
+				{
+					ImGui::TextUnformatted("Settings");
+					ImGui::Checkbox("VisibleBoneESP", &MenuConfig::VisibleEsp);
+					ImGui::SameLine();
+					ImGui::ColorEdit4("##BoneVisColor", reinterpret_cast<float*>(&MenuConfig::BoneVisColor), ImGuiColorEditFlags_NoInputs);
+					ImGui::EndPopup();
+				}
+
+				ImGui::Checkbox("EyeRay", &MenuConfig::ShowEyeRay);
+				ImGui::SameLine();
+				ImGui::ColorEdit4("##EyeRay", reinterpret_cast<float*>(&MenuConfig::EyeRayColor), ImGuiColorEditFlags_NoInputs);
+
+				ImGui::Checkbox("HealthBar", &MenuConfig::ShowHealthBar);
+				ImGui::Combo("HealthBarType", &MenuConfig::HealthBarType, "Vetical\0Horizontal");
+
+				ImGui::Checkbox("WeaponText", &MenuConfig::ShowWeaponESP);
+				ImGui::Checkbox("PlayerName", &MenuConfig::ShowPlayerName);
+
+				ImGui::Checkbox("HeadShootLine", &MenuConfig::ShowHeadShootLine);
+				ImGui::SameLine();
+				ImGui::ColorEdit4("##HeadShootLineColor", reinterpret_cast<float*>(&MenuConfig::HeadShootLineColor), ImGuiColorEditFlags_NoInputs);
+
+				ImGui::Checkbox("FovLine", &MenuConfig::ShowFovLine);
+				ImGui::SameLine();
+				ImGui::ColorEdit4("##FovLineColor", reinterpret_cast<float*>(&MenuConfig::FovLineColor), ImGuiColorEditFlags_NoInputs);
+				float FovLineSizeMin = 20.f, FovLineSizeMax = 120.f;
+				Gui.SliderScalarEx1("FovLineSize", ImGuiDataType_Float, &MenuConfig::FovLineSize, &FovLineSizeMin, &FovLineSizeMax, "%.1f", ImGuiSliderFlags_None);
+
+				ImGui::Checkbox("LineToEnemy", &MenuConfig::ShowLineToEnemy);
+				ImGui::SameLine();
+				ImGui::ColorEdit4("##LineToEnemyColor", reinterpret_cast<float*>(&MenuConfig::LineToEnemyColor), ImGuiColorEditFlags_NoInputs);
+
+				ImGui::Checkbox("CrossHair", &MenuConfig::ShowCrossHair);
+				ImGui::SameLine();
+				ImGui::ColorEdit4("##CrossHairColor", reinterpret_cast<float*>(&CrosshairConfig::CrossHairColor), ImGuiColorEditFlags_NoInputs);
+				ImGui::SameLine();
+				if (ImGui::Button("Settings"))
+					ImGui::OpenPopup("##Settings");
+				if (ImGui::BeginPopup("##Settings"))
+				{
+					ImGui::TextUnformatted("Settings");
+					ImGui::Checkbox("Center Dot", &CrosshairConfig::drawDot);
+					ImGui::SliderInt("Horizontal Length", &CrosshairConfig::HorizontalLength, 0, 75, "%d");
+					ImGui::SliderInt("Vertical Length", &CrosshairConfig::VerticalLength, 0, 75, "%d");
+					ImGui::SliderInt("Gap", &CrosshairConfig::Gap, 0, 35, "%d");
+					ImGui::Checkbox("Outline", &CrosshairConfig::drawOutLine);
+					ImGui::Checkbox("T Style", &CrosshairConfig::tStyle);
+					ImGui::EndPopup();
+				}
+
+				ImGui::Checkbox("Distance Esp", &MenuConfig::ShowDistance);
+
+			}
+			else if (tabb == 1) {
+				//aimbot
+				ImGui::Text("-Aimbot-");
+
+				ImGui::Checkbox("AimBot", &MenuConfig::AimBot);
+				ImGui::SameLine();
+				HotKey(&AimControl::HotKey, ImVec2(95, 28));
+
+				if (ImGui::Combo("AimKey", &MenuConfig::AimBotHotKey, "MENU\0RBUTTON\0XBUTTON1\0XBUTTON2\0CAPITAL\0SHIFT\0CONTROL"))
+				{
+					AimControl::SetHotKey(MenuConfig::AimBotHotKey);
+				}
+
+				float FovMin = 0.1f, FovMax = 89.f;
+				float SmoothMin = 0.1f, SmoothMax = 1.f;
+				Gui.SliderScalarEx1("AimFov", ImGuiDataType_Float, &AimControl::AimFov, &FovMin, &FovMax, "%.1f", ImGuiSliderFlags_None);
+				ImGui::Checkbox("FovCircle", &MenuConfig::ShowAimFovRange);
+				ImGui::SameLine();
+				ImGui::ColorEdit4("##FovCircleColor", reinterpret_cast<float*>(&MenuConfig::AimFovRangeColor), ImGuiColorEditFlags_NoInputs);
+				Gui.SliderScalarEx1("Smooth", ImGuiDataType_Float, &AimControl::Smooth, &SmoothMin, &SmoothMax, "%.1f", ImGuiSliderFlags_None);
+				if (ImGui::Combo("AimPos", &MenuConfig::AimPosition, "Head\0Neck\0Spine"))
+				{
+					switch (MenuConfig::AimPosition)
+					{
+					case 0:
+						MenuConfig::AimPositionIndex = BONEINDEX::head;
+						break;
+					case 1:
+						MenuConfig::AimPositionIndex = BONEINDEX::neck_0;
+						break;
+					case 2:
+						MenuConfig::AimPositionIndex = BONEINDEX::spine_1;
+						break;
+					default:
+						break;
+					}
+				}
+				float BulletMin = 1, BulletMax = 6;
+				float RecoilMin = 0.f, RecoilMax = 2.f;
+				Gui.SliderScalarEx1("Start Bullet", ImGuiDataType_U32, &AimControl::RCSBullet, &BulletMin, &BulletMax, "%1.f", ImGuiSliderFlags_None);
+				Gui.SliderScalarEx1("RCS Yaw", ImGuiDataType_Float, &AimControl::RCSScale.x, &RecoilMin, &RecoilMax, "%.1f", ImGuiSliderFlags_None);
+				Gui.SliderScalarEx1("RCS Pitch", ImGuiDataType_Float, &AimControl::RCSScale.y, &RecoilMin, &RecoilMax, "%.1f", ImGuiSliderFlags_None);
+				ImGui::Checkbox("VisibleCheck", &MenuConfig::VisibleCheck);
+			}
+			else if (tabb == 2) {
+				//radar
+				ImGui::Text("-Misc-");
+				ImGui::Checkbox("Radar", &MenuConfig::ShowRadar);
+				ImGui::Combo("RadarType", &MenuConfig::RadarType, "Circle\0Arrow\0CircleWithArrow");
+
+				ImGui::Checkbox("CrossLine", &MenuConfig::ShowRadarCrossLine);
+				ImGui::SameLine();
+				ImGui::ColorEdit4("##CrossLineColor", reinterpret_cast<float*>(&MenuConfig::RadarCrossLineColor), ImGuiColorEditFlags_NoInputs);
+
+				float ProportionMin = 500.f, ProportionMax = 3300.f;
+				float RadarRangeMin = 100.f, RadarRangeMax = 300.f;
+				float RadarBgAlphaMin = 0.0f, RadarBgAlphaMax = 1.0f;
+				float RadarPointSizeProportionMin = 0.8f, RadarPointSizeProportionMax = 2.f;
+				Gui.SliderScalarEx1("PointSize", ImGuiDataType_Float, &MenuConfig::RadarPointSizeProportion, &RadarPointSizeProportionMin, &RadarPointSizeProportionMax, "%.1f", ImGuiSliderFlags_None);
+				Gui.SliderScalarEx1("Proportion", ImGuiDataType_Float, &MenuConfig::Proportion, &ProportionMin, &ProportionMax, "%.1f", ImGuiSliderFlags_None);
+				Gui.SliderScalarEx1("RadarRange", ImGuiDataType_Float, &MenuConfig::RadarRange, &RadarRangeMin, &RadarRangeMax, "%.1f", ImGuiSliderFlags_None);
+				Gui.SliderScalarEx1("RadarBgAlpha", ImGuiDataType_Float, &MenuConfig::RadarBgAlpha, &RadarBgAlphaMin, &RadarBgAlphaMax, "%.3f", ImGuiSliderFlags_None);
+
+				ImGui::Checkbox("Bunnyhop", &MenuConfig::BunnyHop);
+				ImGui::SameLine();
+				ImGui::Checkbox("Bunnyhop 2", &MenuConfig::BunnyHop2);
+			}
+			else if (tabb == 3) {
+				//triggerbot
+				ImGui::Text("-Triggerbot-");
+
+				ImGui::Checkbox("TriggerBot", &MenuConfig::TriggerBot);
+				ImGui::SameLine();
+				HotKey(&TriggerBot::HotKey, ImVec2(95, 28));
+
+				if (ImGui::Combo("Triggerbot Key", &MenuConfig::TriggerHotKey, "MENU\0RBUTTON\0XBUTTON1\0XBUTTON2\0CAPITAL\0SHIFT\0CONTROL"))
+				{
+					TriggerBot::SetHotKey(MenuConfig::TriggerHotKey);
+				}
+
+				DWORD TriggerDelayMin = 15, TriggerDelayMax = 170;
+				Gui.SliderScalarEx1("Delay", ImGuiDataType_U32, &TriggerBot::TriggerDelay, &TriggerDelayMin, &TriggerDelayMax, "%d", ImGuiSliderFlags_None);
+			}
+			else if (tabb == 4) {
+				//config
+				ConfigMenu::RenderConfigMenu();
+			}
+			else if (tabb == 5) {
+				ImGui::Combo("Select Style", &MenuConfig::selectedStyleIndex, "Purple\0Future Dark\0Peach\0");
+				switch (MenuConfig::selectedStyleIndex) {
 				case 0:
-					MenuConfig::AimPositionIndex = BONEINDEX::head;
+					MenuConfig::styleee = 1;
 					break;
 				case 1:
-					MenuConfig::AimPositionIndex = BONEINDEX::neck_0;
+					MenuConfig::styleee = 2;
 					break;
 				case 2:
-					MenuConfig::AimPositionIndex = BONEINDEX::spine_1;
-					break;
-				default:
+					MenuConfig::styleee = 3;
 					break;
 				}
+				ImGui::Checkbox("TeamCheck", &MenuConfig::TeamCheck);
+				ImGui::SameLine();
+				ImGui::Checkbox("BypassOBS", &MenuConfig::OBSBypass);
+				ImGui::SameLine();
+				ImGui::Checkbox("Spectate Esp", &MenuConfig::SpectateEsp);
+				if (ImGui::Button("Discord")) {
+					std::system("cmd.exe /c start https://discord.gg/2b66kqG2nK");
+				}
 			}
-			float BulletMin = 1, BulletMax = 6;
-			float RecoilMin = 0.f, RecoilMax = 2.f;
-			Gui.SliderScalarEx1("Start Bullet", ImGuiDataType_U32, &AimControl::RCSBullet, &BulletMin, &BulletMax, "%1.f", ImGuiSliderFlags_None);
-			Gui.SliderScalarEx1("RCS Yaw", ImGuiDataType_Float, &AimControl::RCSScale.x, &RecoilMin, &RecoilMax, "%.1f", ImGuiSliderFlags_None);
-			Gui.SliderScalarEx1("RCS Pitch", ImGuiDataType_Float, &AimControl::RCSScale.y, &RecoilMin, &RecoilMax, "%.1f", ImGuiSliderFlags_None);
-			ImGui::Checkbox("VisibleCheck", &MenuConfig::VisibleCheck);
-		}
-		else if (tabb == 2) {
-			//radar
-			ImGui::Text("-Misc-");
-			ImGui::Checkbox("Radar", &MenuConfig::ShowRadar);
-			ImGui::Combo("RadarType", &MenuConfig::RadarType, "Circle\0Arrow\0CircleWithArrow");
-
-			ImGui::Checkbox("CrossLine", &MenuConfig::ShowRadarCrossLine);
-			ImGui::SameLine();
-			ImGui::ColorEdit4("##CrossLineColor", reinterpret_cast<float*>(&MenuConfig::RadarCrossLineColor), ImGuiColorEditFlags_NoInputs);
-
-			float ProportionMin = 500.f, ProportionMax = 3300.f;
-			float RadarRangeMin = 100.f, RadarRangeMax = 300.f;
-			float RadarBgAlphaMin = 0.0f, RadarBgAlphaMax = 1.0f;
-			float RadarPointSizeProportionMin = 0.8f, RadarPointSizeProportionMax = 2.f;
-			Gui.SliderScalarEx1("PointSize", ImGuiDataType_Float, &MenuConfig::RadarPointSizeProportion, &RadarPointSizeProportionMin, &RadarPointSizeProportionMax, "%.1f", ImGuiSliderFlags_None);
-			Gui.SliderScalarEx1("Proportion", ImGuiDataType_Float, &MenuConfig::Proportion, &ProportionMin, &ProportionMax, "%.1f", ImGuiSliderFlags_None);
-			Gui.SliderScalarEx1("RadarRange", ImGuiDataType_Float, &MenuConfig::RadarRange, &RadarRangeMin, &RadarRangeMax, "%.1f", ImGuiSliderFlags_None);
-			Gui.SliderScalarEx1("RadarBgAlpha", ImGuiDataType_Float, &MenuConfig::RadarBgAlpha, &RadarBgAlphaMin, &RadarBgAlphaMax, "%.3f", ImGuiSliderFlags_None);
-
-			ImGui::Checkbox("Bunnyhop", &MenuConfig::BunnyHop);
-			ImGui::SameLine();
-			ImGui::Checkbox("Bunnyhop 2", &MenuConfig::BunnyHop2);
-		}
-		else if (tabb == 3) {
-			//triggerbot
-			ImGui::Text("-Triggerbot-");
-
-			ImGui::Checkbox("TriggerBot", &MenuConfig::TriggerBot);
-			ImGui::SameLine();
-			HotKey(&TriggerBot::HotKey, ImVec2(95, 28));
-
-			if (ImGui::Combo("Triggerbot Key", &MenuConfig::TriggerHotKey, "MENU\0RBUTTON\0XBUTTON1\0XBUTTON2\0CAPITAL\0SHIFT\0CONTROL"))
-			{
-				TriggerBot::SetHotKey(MenuConfig::TriggerHotKey);
-			}
-
-			DWORD TriggerDelayMin = 15, TriggerDelayMax = 170;
-			Gui.SliderScalarEx1("Delay", ImGuiDataType_U32, &TriggerBot::TriggerDelay, &TriggerDelayMin, &TriggerDelayMax, "%d", ImGuiSliderFlags_None);
-		}
-		else if (tabb == 4) {
-			//config
-			ConfigMenu::RenderConfigMenu();
+			ImGui::Text("[INSERT] HideMenu");
 		}
 
-		ImGui::Separator();
-		ImGui::Combo("Select Style", &selectedStyleIndex, "Purple\0Future Dark\0Peach\0");
-		switch (selectedStyleIndex) {
-		case 0:
-			styleee = 1;
-			break;
-		case 1:
-			styleee = 2;
-			break;
-		case 2:
-			styleee = 3;
-			break;
-		}
-		ImGui::Checkbox("TeamCheck", &MenuConfig::TeamCheck);
-		ImGui::SameLine();
-		ImGui::Checkbox("BypassOBS", &MenuConfig::OBSBypass);
-		ImGui::SameLine();
-		ImGui::Checkbox("Spectate Esp", &MenuConfig::SpectateEsp);
-		if (ImGui::Button("Discord")) {
-			std::system("cmd.exe /c start https://discord.gg/2b66kqG2nK");
-		}
-
-		ImGui::Text("[INSERT] HideMenu");
-
+		ImGui::EndChild();
 	}
 	ImGui::End();
 }
@@ -410,8 +428,22 @@ void Cheats::Run()
 		}
 
 		// Draw Bone
-		if (MenuConfig::ShowBoneESP)
-			Render::DrawBone(Entity, MenuConfig::BoneColorESP, 1.3);
+		if (MenuConfig::ShowBoneESP) {
+			Render::DrawBone(Entity, MenuConfig::BoneColor, 1.3);
+
+			//visible bone esp
+			if (MenuConfig::VisibleEsp) {
+				if ((Entity.Pawn.bSpottedByMask) > 0) {
+					Render::DrawBone(Entity, MenuConfig::BoneVisColor, 1.3);
+				}
+				else {
+					Render::DrawBone(Entity, MenuConfig::BoneColor, 1.3);
+				}
+			}
+			else if (!MenuConfig::VisibleCheck) {
+				Render::DrawBone(Entity, MenuConfig::BoneColor, 1.3);
+			}
+		}
 
 		// Draw eyeRay
 		if (MenuConfig::ShowEyeRay)
@@ -436,8 +468,21 @@ void Cheats::Run()
 			Render::LineToEnemy(Rect, MenuConfig::LineToEnemyColor, 1.2);
 
 		// Draw Box
-		if (MenuConfig::ShowBoxESP)
-			Gui.Rectangle({ Rect.x,Rect.y }, { Rect.z,Rect.w }, MenuConfig::BoxColor, 1.3);
+		if (MenuConfig::ShowBoxESP) {
+			Gui.Rectangle({ Rect.x, Rect.y }, { Rect.z, Rect.w }, MenuConfig::BoxColor, 3);
+			//Box Vis Check
+			if (MenuConfig::EspVisCheck) {
+				if (Entity.Pawn.bSpottedByMask > 0) {
+					Gui.Rectangle({ Rect.x, Rect.y }, { Rect.z, Rect.w }, MenuConfig::VisibleColor, 1.3);
+				}
+				else {
+					Gui.Rectangle({ Rect.x, Rect.y }, { Rect.z, Rect.w }, MenuConfig::BoxColor, 1.3);
+				}
+			}
+			else {
+				Gui.Rectangle({ Rect.x, Rect.y }, { Rect.z, Rect.w }, MenuConfig::BoxColor, 1.3);
+			}
+		}
 
 		// Draw HealthBar
 		if (MenuConfig::ShowHealthBar)
@@ -478,19 +523,6 @@ void Cheats::Run()
 			else
 				Gui.StrokeText(Entity.Controller.PlayerName, { Rect.x + Rect.z / 2,Rect.y - 13 - 14 }, ImColor(255, 255, 255, 255), 12, true);
 		}
-
-		//visible esp
-		if (MenuConfig::VisibleEsp) {
-			if ((Entity.Pawn.bSpottedByMask) > 0) {
-				MenuConfig::BoneColorESP = MenuConfig::BoneVisColor;
-			}
-			else {
-				MenuConfig::BoneColorESP = MenuConfig::BoneColor;
-			}
-		}
-		else if (!MenuConfig::VisibleCheck) {
-			MenuConfig::BoneColorESP = MenuConfig::BoneColor;
-		}
 	}
 
 	// Fov line
@@ -516,10 +548,6 @@ void Cheats::Run()
 	// Fov circle
 	if (MenuConfig::ShowAimFovRange)
 		Render::DrawFovCircle(LocalEntity);
-
-	if (MenuConfig::ShowBoneESP && !MenuConfig::VisibleEsp) {
-		MenuConfig::BoneColorESP = MenuConfig::BoneColor;
-	}
 
 	if (MenuConfig::BunnyHop)
 		Bunnyhop::Run(LocalEntity);

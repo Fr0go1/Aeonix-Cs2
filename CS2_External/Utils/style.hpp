@@ -111,10 +111,10 @@ void SetupImGuiStyle2()
 	style.FramePadding = ImVec2(6.0f, 6.0f);
 	style.FrameRounding = 0.0f;
 	style.FrameBorderSize = 0.0f;
-	style.ItemSpacing = ImVec2(12.0f, 6.0f);
-	style.ItemInnerSpacing = ImVec2(6.0f, 3.0f);
+	style.ItemSpacing = ImVec2(5.5f, 5.5f);
+	style.ItemInnerSpacing = ImVec2(5.5f, 5.5f);
 	style.CellPadding = ImVec2(12.0f, 6.0f);
-	style.IndentSpacing = 20.0f;
+	style.IndentSpacing = 15.0f;
 	style.ColumnsMinSpacing = 6.0f;
 	style.ScrollbarSize = 12.0f;
 	style.ScrollbarRounding = 0.0f;
@@ -190,7 +190,7 @@ void SetupImGuiStyle3()
 	style.Alpha = 1.0f;
 	style.DisabledAlpha = 1.0f;
 	style.WindowPadding = ImVec2(7.900000095367432f, 7.900000095367432f);
-	style.WindowRounding = 0.0f;
+	style.WindowRounding = 7.0f;
 	style.WindowBorderSize = 0.0f;
 	style.WindowMinSize = ImVec2(20.0f, 20.0f);
 	style.WindowTitleAlign = ImVec2(0.5f, 0.5f);
