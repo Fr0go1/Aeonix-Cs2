@@ -16,8 +16,6 @@ I made a discord server https://discord.gg/2b66kqG2nK
 <details>
 <summary>Features that are bugged</summary>
   
-- Visible esp
-  
 - Bunnyhop v2
 
 - Mouse_event aimbot (currently in the works)
