@@ -91,11 +91,13 @@ void Cheats::Menu()
 				ImGui::SameLine();
 				ImGui::ColorEdit4("##BoxColor", reinterpret_cast<float*>(&MenuConfig::BoxColor), ImGuiColorEditFlags_NoInputs);
 				ImGui::SameLine();
-				if (ImGui::Button("VisCheck"))
+
+				if (ImGui::Button("VisCheck (Box)"))
 					ImGui::OpenPopup("##boxvis");
+
 				if (ImGui::BeginPopup("##boxvis"))
 				{
-					ImGui::TextUnformatted("Settings");
+					ImGui::TextUnformatted("Box Settings");
 					ImGui::Checkbox("VisibleBoxESP", &MenuConfig::EspVisCheck);
 					ImGui::SameLine();
 					ImGui::ColorEdit4("##BoxVisColor", reinterpret_cast<float*>(&MenuConfig::VisibleColor), ImGuiColorEditFlags_NoInputs);
@@ -108,11 +110,13 @@ void Cheats::Menu()
 				ImGui::SameLine();
 				ImGui::ColorEdit4("##BoneColor", reinterpret_cast<float*>(&MenuConfig::BoneColor), ImGuiColorEditFlags_NoInputs);
 				ImGui::SameLine();
-				if (ImGui::Button("VisCheck"))
+
+				if (ImGui::Button("VisCheck (Bone)"))
 					ImGui::OpenPopup("##bonevis");
+
 				if (ImGui::BeginPopup("##bonevis"))
 				{
-					ImGui::TextUnformatted("Settings");
+					ImGui::TextUnformatted("Bone Settings");
 					ImGui::Checkbox("VisibleBoneESP", &MenuConfig::VisibleEsp);
 					ImGui::SameLine();
 					ImGui::ColorEdit4("##BoneVisColor", reinterpret_cast<float*>(&MenuConfig::BoneVisColor), ImGuiColorEditFlags_NoInputs);
