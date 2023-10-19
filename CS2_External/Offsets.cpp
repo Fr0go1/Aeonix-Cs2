@@ -50,12 +50,6 @@ bool Offset::UpdateOffsets()
 
 	Offset::GlobalVars = TempAddress - ClientDLL;
 
-	TempAddress = SearchOffsets(Offset::Signatures::PlantedC4, ClientDLL);
-	if (TempAddress == 0)
-		return false;
-
-	Offset::PlantedC4 = TempAddress - ClientDLL;
-
 
 	TempAddress = SearchOffsets(Offset::Signatures::ViewAngles, ClientDLL);
 	if (TempAddress == 0)

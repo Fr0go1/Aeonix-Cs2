@@ -358,6 +358,7 @@ void Cheats::Run()
 	for (int i = 0; i < 64; i++)
 	{
 		CEntity Entity;
+		static int LocalPlayerControllerIndex = 1;
 		DWORD64 EntityAddress = 0;
 		if (!ProcessMgr.ReadMemory<DWORD64>(gGame.GetEntityListEntry() + (i + 1) * 0x78, EntityAddress))
 			continue;
@@ -397,7 +398,10 @@ void Cheats::Run()
 		if (DistanceToSight < MaxAimDistance)
 		{
 			MaxAimDistance = DistanceToSight;
-			if (MenuConfig::VisibleCheck && Entity.Pawn.bSpottedByMask > 0 || !MenuConfig::VisibleCheck)
+			// From: https://github.com/redbg/CS2-Internal/blob/fc8e64430176a62f8800b7467884806708a865bb/src/include/Cheats.hpp#L129
+			if (!MenuConfig::VisibleCheck ||
+				Entity.Pawn.bSpottedByMask & (DWORD64(1) << (LocalPlayerControllerIndex)) ||
+				LocalEntity.Pawn.bSpottedByMask & (DWORD64(1) << (i)))
 			{
 				AimPos = Entity.GetBone().BonePosList[MenuConfig::AimPositionIndex].Pos;
 				if (MenuConfig::AimPositionIndex == BONEINDEX::head)
@@ -477,7 +481,7 @@ void Cheats::Run()
 
 		//visible esp
 		if (MenuConfig::VisibleEsp) {
-			if (abs(Entity.Pawn.bSpottedByMask) > 0) {
+			if ((Entity.Pawn.bSpottedByMask) > 0) {
 				MenuConfig::BoneColorESP = MenuConfig::BoneVisColor;
 			}
 			else {

@@ -98,7 +98,7 @@ bool PlayerPawn::GetCameraPos()
 
 bool PlayerPawn::GetSpotted()
 {
-	return GetDataAddressWithOffset<int>(Address, Offset::Pawn.bSpottedByMask, this->bSpottedByMask);
+	return GetDataAddressWithOffset<DWORD64>(Address, Offset::Pawn.bSpottedByMask, this->bSpottedByMask);
 }
 
 bool PlayerPawn::GetWeaponName()

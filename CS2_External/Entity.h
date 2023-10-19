@@ -48,7 +48,7 @@ public:
 	int Health;
 	int TeamID;
 	int Fov;
-	int bSpottedByMask;
+	DWORD64 bSpottedByMask;
 	int fFlags;
 public:
 	bool GetPos();
