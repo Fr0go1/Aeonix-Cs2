@@ -13,9 +13,9 @@ namespace TriggerBot
 	inline int HotKey = VK_LMENU;
 	inline std::vector<int> HotKeyList{ VK_LMENU, VK_RBUTTON, VK_XBUTTON1, VK_XBUTTON2, VK_CAPITAL, VK_LSHIFT, VK_LCONTROL };
 
-	std::random_device rd;
-	std::mt19937 gen(rd());
-	std::uniform_int_distribution<DWORD> delayDistribution(MinDelay, MaxDelay);
+	//std::random_device rd;
+	//std::mt19937 gen(rd());
+	//std::uniform_int_distribution<DWORD> delayDistribution(MinDelay, MaxDelay);
 
 	inline void SetHotKey(int Index)
 	{
