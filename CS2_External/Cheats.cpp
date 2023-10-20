@@ -502,13 +502,13 @@ void Cheats::Run()
 			{
 				// Vertical
 				HealthBarPos = { Rect.x - 7.f,Rect.y };
-				HealthBarSize = { 7 ,Rect.w };
+				HealthBarSize = { 4 ,Rect.w };
 			}
 			else
 			{
 				// Horizontal
 				HealthBarPos = { Rect.x + Rect.z / 2 - 70 / 2,Rect.y - 13 };
-				HealthBarSize = { 70,8 };
+				HealthBarSize = { 70,4 };
 			}
 			Render::DrawHealthBar(EntityAddress, 100, Entity.Pawn.Health, HealthBarPos, HealthBarSize, MenuConfig::HealthBarType);
 		}
