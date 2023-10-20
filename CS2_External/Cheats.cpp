@@ -445,7 +445,8 @@ void Cheats::Run()
 
 			//visible bone esp
 			if (MenuConfig::VisibleEsp) {
-				if ((Entity.Pawn.bSpottedByMask) > 0) {
+				if ((Entity.Pawn.bSpottedByMask & (DWORD64(1) << LocalPlayerControllerIndex)) ||
+					(LocalEntity.Pawn.bSpottedByMask & (DWORD64(1) << i))) {
 					Render::DrawBone(Entity, MenuConfig::BoneVisColor, 1.3);
 				}
 				else {
@@ -484,7 +485,8 @@ void Cheats::Run()
 			Gui.Rectangle({ Rect.x, Rect.y }, { Rect.z, Rect.w }, { 0, 0, 0, 255 }, 3);
 			//Box Vis Check
 			if (MenuConfig::EspVisCheck) {
-				if (Entity.Pawn.bSpottedByMask > 0) {
+				if ((Entity.Pawn.bSpottedByMask & (DWORD64(1) << LocalPlayerControllerIndex)) ||
+					(LocalEntity.Pawn.bSpottedByMask & (DWORD64(1) << i))) {
 					Gui.Rectangle({ Rect.x, Rect.y }, { Rect.z, Rect.w }, MenuConfig::VisibleColor, 1.3);
 				}
 				else {
