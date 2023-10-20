@@ -36,6 +36,7 @@ namespace MyConfigSaver {
         // Example: Save global settings to the file
         configFile << "ShowBoneESP " << MenuConfig::ShowBoneESP << std::endl;
         configFile << "VisibleEsp " << MenuConfig::VisibleEsp << std::endl;
+        configFile << "HealthText " << MenuConfig::HealthText << std::endl;
         configFile << "SpectateEsp " << MenuConfig::SpectateEsp << std::endl;
         configFile << "MinTriggerDelay " << TriggerBot::MinDelay << std::endl;
         configFile << "MaxTriggerDelay " << TriggerBot::MaxDelay << std::endl;
@@ -131,6 +132,7 @@ namespace MyConfigSaver {
             if (iss >> key) {
                 if (key == "ShowBoneESP") iss >> MenuConfig::ShowBoneESP;
                 else if (key == "VisibleEsp") iss >> MenuConfig::VisibleEsp;
+                else if (key == "HealthText") iss >> MenuConfig::HealthText;
                 else if (key == "SpectateEsp") iss >> MenuConfig::SpectateEsp;
                 else if (key == "MinTriggerDelay") iss >> TriggerBot::MinDelay;
                 else if (key == "MaxTriggerDelay") iss >> TriggerBot::MaxDelay;

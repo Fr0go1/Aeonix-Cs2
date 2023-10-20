@@ -151,6 +151,7 @@ namespace ConfigMenu {
 
 	void ResetToDefault() {
 		MenuConfig::ShowBoneESP = true;
+		MenuConfig::HealthText = true;
 		MenuConfig::SpectateEsp = false;
 		MenuConfig::ShowBoxESP = true;
 		MenuConfig::ShowHealthBar = true;

@@ -166,6 +166,7 @@ void Cheats::Menu()
 				}
 
 				ImGui::Checkbox("Distance Esp", &MenuConfig::ShowDistance);
+				ImGui::Checkbox("Health Text", &MenuConfig::HealthText);
 				ImGui::Text("[INSERT] HideMenu");
 
 			}
@@ -521,6 +522,12 @@ void Cheats::Run()
 			sprintf_s(buffer, "%im", distance);
 			std::string dis_str = buffer;
 			Gui.StrokeText(dis_str, { Rect.x + Rect.z + 4, Rect.y }, ImColor(255, 255, 255, 255), 12, false);
+		}
+
+		if (MenuConfig::HealthText)
+		{
+			std::string yourString = std::to_string(Entity.Pawn.Health);
+			Gui.StrokeText(yourString, { Rect.x + Rect.z + 4, Rect.y + 10 }, ImColor(255, 255, 255, 255), 12, false);
 		}
 
 		// Draw weaponName
