@@ -37,7 +37,8 @@ namespace MyConfigSaver {
         configFile << "ShowBoneESP " << MenuConfig::ShowBoneESP << std::endl;
         configFile << "VisibleEsp " << MenuConfig::VisibleEsp << std::endl;
         configFile << "SpectateEsp " << MenuConfig::SpectateEsp << std::endl;
-        configFile << "TriggerDelay " << TriggerBot::TriggerDelay << std::endl;
+        configFile << "MinTriggerDelay " << TriggerBot::MinDelay << std::endl;
+        configFile << "MaxTriggerDelay " << TriggerBot::MaxDelay << std::endl;
         configFile << "ShowBoxESP " << MenuConfig::ShowBoxESP << std::endl;
         configFile << "TriggerHotKey " << MenuConfig::TriggerHotKey << std::endl;
         configFile << "RCSBullet " << AimControl::RCSBullet << std::endl;
@@ -131,7 +132,8 @@ namespace MyConfigSaver {
                 if (key == "ShowBoneESP") iss >> MenuConfig::ShowBoneESP;
                 else if (key == "VisibleEsp") iss >> MenuConfig::VisibleEsp;
                 else if (key == "SpectateEsp") iss >> MenuConfig::SpectateEsp;
-                else if (key == "TriggerDelay") iss >> TriggerBot::TriggerDelay;
+                else if (key == "MinTriggerDelay") iss >> TriggerBot::MinDelay;
+                else if (key == "MaxTriggerDelay") iss >> TriggerBot::MaxDelay;
                 else if (key == "ShowBoxESP") iss >> MenuConfig::ShowBoxESP;
                 else if (key == "TriggerHotKey") { iss >> MenuConfig::TriggerHotKey; TriggerBot::SetHotKey(MenuConfig::TriggerHotKey); }
                 else if (key == "RCSBullet") iss >> AimControl::RCSBullet;

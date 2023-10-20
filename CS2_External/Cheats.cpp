@@ -248,8 +248,10 @@ void Cheats::Menu()
 					TriggerBot::SetHotKey(MenuConfig::TriggerHotKey);
 				}
 
-				DWORD TriggerDelayMin = 15, TriggerDelayMax = 170;
-				Gui.SliderScalarEx1("Delay", ImGuiDataType_U32, &TriggerBot::TriggerDelay, &TriggerDelayMin, &TriggerDelayMax, "%d", ImGuiSliderFlags_None);
+				DWORD MinTriggerDelayMin = 10, MinTriggerDelayMax = 300;
+				DWORD MaxTriggerDelayMin = 10, MaxTriggerDelayMax = 600;
+				Gui.SliderScalarEx1("MinDelay", ImGuiDataType_U32, &TriggerBot::MinDelay, &MinTriggerDelayMin, &MinTriggerDelayMax, "%d", ImGuiSliderFlags_None);
+				Gui.SliderScalarEx1("MaxDelay", ImGuiDataType_U32, &TriggerBot::MaxDelay, &MaxTriggerDelayMin, &MaxTriggerDelayMax, "%d", ImGuiSliderFlags_None);
 			}
 			else if (tabb == 4) {
 				//config
@@ -473,7 +475,7 @@ void Cheats::Run()
 
 		// Draw Box
 		if (MenuConfig::ShowBoxESP) {
-			Gui.Rectangle({ Rect.x, Rect.y }, { Rect.z, Rect.w }, MenuConfig::BoxColor, 3);
+			Gui.Rectangle({ Rect.x, Rect.y }, { Rect.z, Rect.w }, { 0, 0, 0, 255 }, 3);
 			//Box Vis Check
 			if (MenuConfig::EspVisCheck) {
 				if (Entity.Pawn.bSpottedByMask > 0) {
