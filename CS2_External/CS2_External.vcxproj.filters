@@ -119,7 +119,6 @@
     </ClInclude>
     <ClInclude Include="Utils\style.hpp" />
     <ClInclude Include="font\IconsFontAwesome5.h" />
-    <ClInclude Include="Bunnyhop.hpp" />
     <ClInclude Include="mathstuff.h" />
     <ClInclude Include="font\fontArray.h" />
     <ClInclude Include="resource.h" />

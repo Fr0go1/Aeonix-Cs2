@@ -33,8 +33,6 @@ namespace MenuConfig
 
 	inline bool ShowMenu = true;
 	inline bool VisibleEsp = true;
-	inline bool BunnyHop = true;
-	inline bool BunnyHop2 = true;
 	inline bool ShowRadar = true;
 	inline float RadarRange = 150;
 	inline float RadarPointSizeProportion = 1.f;

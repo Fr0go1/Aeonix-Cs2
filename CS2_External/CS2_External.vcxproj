@@ -142,7 +142,6 @@
   <ItemGroup>
     <ClInclude Include="AimBot.hpp" />
     <ClInclude Include="Bone.h" />
-    <ClInclude Include="Bunnyhop.hpp" />
     <ClInclude Include="Cheats.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="font\fontArray.h" />

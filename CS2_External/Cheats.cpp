@@ -53,27 +53,27 @@ void Cheats::Menu()
 				SetupImGuiStyle3();
 			}
 
-			if (ImGui::Button(ICON_FA_EYE, ImVec2(100, 48))) {
+			if (ImGui::Button(ICON_FA_EYE, ImVec2(100, 35))) {
 				tabb = 0;
 			}
 			ImGui::Spacing();
-			if (ImGui::Button(ICON_FA_USER_CIRCLE, ImVec2(100, 48))) {
+			if (ImGui::Button(ICON_FA_USER_CIRCLE, ImVec2(100, 35))) {
 				tabb = 1;
 			}
 			ImGui::Spacing();
-			if (ImGui::Button(ICON_FA_FILE_CODE, ImVec2(100, 48))) {
+			if (ImGui::Button(ICON_FA_FILE_CODE, ImVec2(100, 35))) {
 				tabb = 2;
 			}
 			ImGui::Spacing();
-			if (ImGui::Button(ICON_FA_HAND_POINTER, ImVec2(100, 48))) {
+			if (ImGui::Button(ICON_FA_HAND_POINTER, ImVec2(100, 35))) {
 				tabb = 3;
 			}
 			ImGui::Spacing();
-			if (ImGui::Button(ICON_FA_FOLDER_OPEN, ImVec2(100, 48))) {
+			if (ImGui::Button(ICON_FA_FOLDER_OPEN, ImVec2(100, 35))) {
 				tabb = 4;
 			}
 			ImGui::Spacing();
-			if (ImGui::Button(ICON_FA_SUN, ImVec2(100, 48))) {
+			if (ImGui::Button(ICON_FA_SUN, ImVec2(100, 35))) {
 				tabb = 5;
 			}
 		}
@@ -233,10 +233,6 @@ void Cheats::Menu()
 				Gui.SliderScalarEx1("Proportion", ImGuiDataType_Float, &MenuConfig::Proportion, &ProportionMin, &ProportionMax, "%.1f", ImGuiSliderFlags_None);
 				Gui.SliderScalarEx1("RadarRange", ImGuiDataType_Float, &MenuConfig::RadarRange, &RadarRangeMin, &RadarRangeMax, "%.1f", ImGuiSliderFlags_None);
 				Gui.SliderScalarEx1("RadarBgAlpha", ImGuiDataType_Float, &MenuConfig::RadarBgAlpha, &RadarBgAlphaMin, &RadarBgAlphaMax, "%.3f", ImGuiSliderFlags_None);
-
-				ImGui::Checkbox("Bunnyhop", &MenuConfig::BunnyHop);
-				ImGui::SameLine();
-				ImGui::Checkbox("Bunnyhop 2", &MenuConfig::BunnyHop2);
 				ImGui::Text("[INSERT] HideMenu");
 			}
 			else if (tabb == 3) {
@@ -568,12 +564,6 @@ void Cheats::Run()
 	// Fov circle
 	if (MenuConfig::ShowAimFovRange)
 		Render::DrawFovCircle(LocalEntity);
-
-	if (MenuConfig::BunnyHop)
-		Bunnyhop::Run(LocalEntity);
-
-	if (MenuConfig::BunnyHop2)
-		Bunnyhop2::Run(LocalEntity);
 
 	// TriggerBot
 	if (MenuConfig::TriggerBot && GetAsyncKeyState(TriggerBot::HotKey))

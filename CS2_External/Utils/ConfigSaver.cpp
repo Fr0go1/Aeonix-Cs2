@@ -92,8 +92,6 @@ namespace MyConfigSaver {
         configFile << "AimFovRangeColor " << MenuConfig::AimFovRangeColor.Value.x << " " << MenuConfig::AimFovRangeColor.Value.y << " " << MenuConfig::AimFovRangeColor.Value.z << " " << MenuConfig::AimFovRangeColor.Value.w << std::endl;
         configFile << "VisibleColor " << MenuConfig::VisibleColor.Value.x << " " << MenuConfig::VisibleColor.Value.y << " " << MenuConfig::VisibleColor.Value.z << " " << MenuConfig::VisibleColor.Value.w << std::endl;
         configFile << "OBSBypass " << MenuConfig::OBSBypass << std::endl;
-        configFile << "BunnyHop " << MenuConfig::BunnyHop << std::endl;
-        configFile << "BunnyHop2 " << MenuConfig::BunnyHop2 << std::endl;
         configFile << "ShowDistance " << MenuConfig::ShowDistance << std::endl;
         configFile << "RadarBgAlpha " << MenuConfig::RadarBgAlpha << std::endl;
         configFile << "Style " << MenuConfig::styleee << std::endl;
@@ -188,8 +186,6 @@ namespace MyConfigSaver {
                 else if (key == "AimFovRangeColor") iss >> MenuConfig::AimFovRangeColor.Value.x >> MenuConfig::AimFovRangeColor.Value.y >> MenuConfig::AimFovRangeColor.Value.z >> MenuConfig::AimFovRangeColor.Value.w;
                 else if (key == "VisibleColor") iss >> MenuConfig::VisibleColor.Value.x >> MenuConfig::VisibleColor.Value.y >> MenuConfig::VisibleColor.Value.z >> MenuConfig::VisibleColor.Value.w;
                 else if (key == "OBSBypass") iss >> MenuConfig::OBSBypass;
-                else if (key == "BunnyHop") iss >> MenuConfig::BunnyHop;
-                else if (key == "BunnyHop2") iss >> MenuConfig::BunnyHop2;
                 else if (key == "ShowDistance") iss >> MenuConfig::ShowDistance;
                 else if (key == "RadarBgAlpha") iss >> MenuConfig::RadarBgAlpha;
                 else if (key == "StyleIndex") iss >> MenuConfig::selectedStyleIndex;
