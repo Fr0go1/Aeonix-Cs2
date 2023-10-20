@@ -34,7 +34,7 @@ namespace OSImGui
         iconConfig.OversampleV = 3;
         iconConfig.GlyphRanges = iconRanges;
         iconConfig.FontDataOwnedByAtlas = false;
-        ImFont* iconFont = fontAtlas->AddFontFromMemoryTTF((void*)rawData, sizeof(rawData), 16.f, &iconConfig, iconRanges);
+        ImFont* iconFont = fontAtlas->AddFontFromMemoryTTF((void*)rawData, sizeof(rawData), 28.f, &iconConfig, iconRanges);
         io.Fonts = fontAtlas;
 
         ImGui::StyleColorsDark();

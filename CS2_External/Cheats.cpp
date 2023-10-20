@@ -21,7 +21,7 @@ static void HotKey(int* k, const ImVec2& size_arg = ImVec2(0, 0))
 	}
 	else if (waitingforkey == true) {
 		ImGui::Button("...", size_arg);
-		std::this_thread::sleep_for(std::chrono::milliseconds(20));
+		std::this_thread::sleep_for(std::chrono::milliseconds(70));
 		for (auto& Key : KeyCodes)
 		{
 			if (GetAsyncKeyState(Key)) {
@@ -53,27 +53,27 @@ void Cheats::Menu()
 				SetupImGuiStyle3();
 			}
 
-			if (ImGui::Button(ICON_FA_EYE" Visuals", ImVec2(100, 30))) {
+			if (ImGui::Button(ICON_FA_EYE, ImVec2(100, 48))) {
 				tabb = 0;
 			}
 			ImGui::Spacing();
-			if (ImGui::Button(ICON_FA_USER_CIRCLE" Aimbot", ImVec2(100, 30))) {
+			if (ImGui::Button(ICON_FA_USER_CIRCLE, ImVec2(100, 48))) {
 				tabb = 1;
 			}
 			ImGui::Spacing();
-			if (ImGui::Button(ICON_FA_FILE_CODE" Misc", ImVec2(100, 30))) {
+			if (ImGui::Button(ICON_FA_FILE_CODE, ImVec2(100, 48))) {
 				tabb = 2;
 			}
 			ImGui::Spacing();
-			if (ImGui::Button(ICON_FA_HAND_POINTER" Triggerbot", ImVec2(100, 30))) {
+			if (ImGui::Button(ICON_FA_HAND_POINTER, ImVec2(100, 48))) {
 				tabb = 3;
 			}
 			ImGui::Spacing();
-			if (ImGui::Button(ICON_FA_FOLDER_OPEN" Config", ImVec2(100, 30))) {
+			if (ImGui::Button(ICON_FA_FOLDER_OPEN, ImVec2(100, 48))) {
 				tabb = 4;
 			}
 			ImGui::Spacing();
-			if (ImGui::Button(ICON_FA_SUN" Settings", ImVec2(100, 30))) {
+			if (ImGui::Button(ICON_FA_SUN, ImVec2(100, 48))) {
 				tabb = 5;
 			}
 		}
@@ -166,6 +166,7 @@ void Cheats::Menu()
 				}
 
 				ImGui::Checkbox("Distance Esp", &MenuConfig::ShowDistance);
+				ImGui::Text("[INSERT] HideMenu");
 
 			}
 			else if (tabb == 1) {
@@ -211,6 +212,7 @@ void Cheats::Menu()
 				Gui.SliderScalarEx1("RCS Yaw", ImGuiDataType_Float, &AimControl::RCSScale.x, &RecoilMin, &RecoilMax, "%.1f", ImGuiSliderFlags_None);
 				Gui.SliderScalarEx1("RCS Pitch", ImGuiDataType_Float, &AimControl::RCSScale.y, &RecoilMin, &RecoilMax, "%.1f", ImGuiSliderFlags_None);
 				ImGui::Checkbox("VisibleCheck", &MenuConfig::VisibleCheck);
+				ImGui::Text("[INSERT] HideMenu");
 			}
 			else if (tabb == 2) {
 				//radar
@@ -234,6 +236,7 @@ void Cheats::Menu()
 				ImGui::Checkbox("Bunnyhop", &MenuConfig::BunnyHop);
 				ImGui::SameLine();
 				ImGui::Checkbox("Bunnyhop 2", &MenuConfig::BunnyHop2);
+				ImGui::Text("[INSERT] HideMenu");
 			}
 			else if (tabb == 3) {
 				//triggerbot
@@ -252,10 +255,12 @@ void Cheats::Menu()
 				DWORD MaxTriggerDelayMin = 10, MaxTriggerDelayMax = 600;
 				Gui.SliderScalarEx1("MinDelay", ImGuiDataType_U32, &TriggerBot::MinDelay, &MinTriggerDelayMin, &MinTriggerDelayMax, "%d", ImGuiSliderFlags_None);
 				Gui.SliderScalarEx1("MaxDelay", ImGuiDataType_U32, &TriggerBot::MaxDelay, &MaxTriggerDelayMin, &MaxTriggerDelayMax, "%d", ImGuiSliderFlags_None);
+				ImGui::Text("[INSERT] HideMenu");
 			}
 			else if (tabb == 4) {
 				//config
 				ConfigMenu::RenderConfigMenu();
+				ImGui::Text("[INSERT] HideMenu");
 			}
 			else if (tabb == 5) {
 				ImGui::Combo("Select Style", &MenuConfig::selectedStyleIndex, "Purple\0Future Dark\0Peach\0");
@@ -278,8 +283,8 @@ void Cheats::Menu()
 				if (ImGui::Button("Discord")) {
 					std::system("cmd.exe /c start https://discord.gg/2b66kqG2nK");
 				}
+				ImGui::Text("[INSERT] HideMenu");
 			}
-			ImGui::Text("[INSERT] HideMenu");
 		}
 
 		ImGui::EndChild();
