@@ -232,9 +232,9 @@ namespace Render
 	void HealthBar::DrawHealthBar_Horizontal(float MaxHealth, float CurrentHealth, ImVec2 Pos, ImVec2 Size)
 	{
 		auto InRange = [&](float value, float min, float max) -> bool
-		{
-			return value > min && value <= max;
-		};
+			{
+				return value > min && value <= max;
+			};
 
 		ImDrawList* DrawList = ImGui::GetBackgroundDrawList();
 
@@ -243,19 +243,19 @@ namespace Render
 		this->RectPos = Pos;
 		this->RectSize = Size;
 
-		// ռ��
+		// Calculate the proportion of health
 		float Proportion = CurrentHealth / MaxHealth;
-		// Ѫ��������
+		// Calculate the width of the health bar
 		float Width = RectSize.x * Proportion;
-		// Ѫ������ɫ
+		// Determine the health bar color
 		ImColor Color;
 
-		// ����
+		// Draw the background
 		DrawList->AddRectFilled(RectPos,
-			{ RectPos.x + RectSize.x,RectPos.y + RectSize.y },
-			BackGroundColor, 5, 15);
+			{ RectPos.x + RectSize.x, RectPos.y + RectSize.y },
+			BackGroundColor);
 
-		// ��ɫ�л�
+		// Interpolate color
 		float Color_Lerp_t = pow(Proportion, 2.5);
 		if (InRange(Proportion, 0.5, 1))
 			Color = Mix(FirstStageColor, SecondStageColor, Color_Lerp_t * 3 - 1);
@@ -302,23 +302,23 @@ namespace Render
 			}
 		}
 
-		// Ѫ��
+		// Draw the health bar with thinner lines
 		DrawList->AddRectFilled(RectPos,
-			{ RectPos.x + Width,RectPos.y + RectSize.y },
-			Color, 5);
+			{ RectPos.x + Width, RectPos.y + RectSize.y },
+			Color, 0.0f); // Set line thickness to 0 for a very thin bar
 
-		// �߿�
+		// Draw the border with thinner lines
 		DrawList->AddRect(RectPos,
-			{ RectPos.x + RectSize.x,RectPos.y + RectSize.y },
-			FrameColor, 5, 15, 1);
+			{ RectPos.x + RectSize.x, RectPos.y + RectSize.y },
+			FrameColor, 0.2f); // Set line thickness to 0 for a very thin border
 	}
 
 	void HealthBar::DrawHealthBar_Vertical(float MaxHealth, float CurrentHealth, ImVec2 Pos, ImVec2 Size)
 	{
 		auto InRange = [&](float value, float min, float max) -> bool
-		{
-			return value > min && value <= max;
-		};
+			{
+				return value > min && value <= max;
+			};
 
 		ImDrawList* DrawList = ImGui::GetBackgroundDrawList();
 
@@ -327,19 +327,19 @@ namespace Render
 		this->RectPos = Pos;
 		this->RectSize = Size;
 
-		// ռ��
+		// Calculate the proportion of health
 		float Proportion = CurrentHealth / MaxHealth;
-		// Ѫ�����߶�
+		// Calculate the height of the health bar
 		float Height = RectSize.y * Proportion;
-		// Ѫ������ɫ
+		// Determine the health bar color
 		ImColor Color;
 
-		// ����
+		// Draw the background
 		DrawList->AddRectFilled(RectPos,
-			{ RectPos.x + RectSize.x,RectPos.y + RectSize.y },
-			BackGroundColor, 5, 15);
+			{ RectPos.x + RectSize.x, RectPos.y + RectSize.y },
+			BackGroundColor);
 
-		// ��ɫ�л�
+		// Interpolate color
 		float Color_Lerp_t = pow(Proportion, 2.5);
 		if (InRange(Proportion, 0.5, 1))
 			Color = Mix(FirstStageColor, SecondStageColor, Color_Lerp_t * 3 - 1);
@@ -386,15 +386,15 @@ namespace Render
 			}
 		}
 
-		// Ѫ��
-		DrawList->AddRectFilled({ RectPos.x,RectPos.y + RectSize.y - Height },
-			{ RectPos.x + RectSize.x,RectPos.y + RectSize.y },
-			Color, 5);
+		// Draw the health bar with thinner lines
+		DrawList->AddRectFilled({ RectPos.x, RectPos.y + RectSize.y - Height },
+			{ RectPos.x + RectSize.x, RectPos.y + RectSize.y },
+			Color, 0.0f);
 
-		// �߿�
+		// Draw the border with thinner lines
 		DrawList->AddRect(RectPos,
-			{ RectPos.x + RectSize.x,RectPos.y + RectSize.y },
-			FrameColor, 5, 15, 1);
+			{ RectPos.x + RectSize.x, RectPos.y + RectSize.y },
+			FrameColor, 0.2f);
 	}
 
 	ImColor HealthBar::Mix(ImColor Col_1, ImColor Col_2, float t)
