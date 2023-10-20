@@ -128,7 +128,7 @@ void Cheats::Menu()
 				ImGui::ColorEdit4("##EyeRay", reinterpret_cast<float*>(&MenuConfig::EyeRayColor), ImGuiColorEditFlags_NoInputs);
 
 				ImGui::Checkbox("HealthBar", &MenuConfig::ShowHealthBar);
-				ImGui::Combo("HealthBarType", &MenuConfig::HealthBarType, "Vetical\0Horizontal");
+				ImGui::Combo("HealthBarType", &MenuConfig::HealthBarType, "Vertical\0Horizontal");
 
 				ImGui::Checkbox("WeaponText", &MenuConfig::ShowWeaponESP);
 				ImGui::Checkbox("PlayerName", &MenuConfig::ShowPlayerName);
