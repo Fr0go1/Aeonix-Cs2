@@ -8,8 +8,6 @@ I made a discord server https://discord.gg/2b66kqG2nK
 <summary>Features that might get you banned</summary>
   
 - Aimbot/RCS
-  
-- Bunnyhop
 
 </details>
 
@@ -120,8 +118,6 @@ Or if you just want to download you can download it from [Releases](https://gith
 - OBS Check
 
 - Visibility Check
-
-- Bhop
 
 - Window Styles
 </details>
