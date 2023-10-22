@@ -39,7 +39,7 @@ void Cheats::Menu()
 
 	ImGui::SetNextWindowSize(ImVec2(625, 645));
 
-	ImGui::Begin("Aeonix",nullptr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize);
+	ImGui::Begin("Aeonix", nullptr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize);
 	{
 		if (ImGui::BeginChild(1, ImVec2(115, 600), true)) {
 
@@ -85,35 +85,38 @@ void Cheats::Menu()
 
 			if (tabb == 0) {
 				//esp
-				ImGui::Text("-Visuals-");
+				ImGui::SeparatorText("Visuals");
 
 				ImGui::Checkbox("BoxESP", &MenuConfig::ShowBoxESP);
-				ImGui::SameLine();
-				ImGui::ColorEdit4("##BoxColor", reinterpret_cast<float*>(&MenuConfig::BoxColor), ImGuiColorEditFlags_NoInputs);
-				ImGui::SameLine();
-
-				if (ImGui::Button("VisCheck (Box)"))
-					ImGui::OpenPopup("##boxvis");
-
-				if (ImGui::BeginPopup("##boxvis"))
+				if (ImGui::IsItemClicked(1))
 				{
-					ImGui::TextUnformatted("Box Settings");
+					ImGui::OpenPopup("##boxvis");
+				}
+				if (ImGui::BeginPopup("##boxvis")) {
+					ImGui::TextUnformatted("Settings");
 					ImGui::Checkbox("VisibleBoxESP", &MenuConfig::EspVisCheck);
 					ImGui::SameLine();
 					ImGui::ColorEdit4("##BoxVisColor", reinterpret_cast<float*>(&MenuConfig::VisibleColor), ImGuiColorEditFlags_NoInputs);
 					ImGui::EndPopup();
 				}
-
+				ImGui::SameLine();
+				ImGui::ColorEdit4("##BoxColor", reinterpret_cast<float*>(&MenuConfig::BoxColor), ImGuiColorEditFlags_NoInputs);
+				ImGui::SameLine();
+				ImGui::SetNextItemWidth(110);
 				ImGui::Combo("BoxType", &MenuConfig::BoxType, "Normal\0Dynamic");
 
+				ImGui::Checkbox("HealthBar", &MenuConfig::ShowHealthBar);
+				ImGui::SameLine();
+				ImGui::SetNextItemWidth(120);
+				ImGui::Combo("HealthBarType", &MenuConfig::HealthBarType, "Vertical\0Top\0Bottom");
+
+
+
 				ImGui::Checkbox("BoneESP", &MenuConfig::ShowBoneESP);
-				ImGui::SameLine();
-				ImGui::ColorEdit4("##BoneColor", reinterpret_cast<float*>(&MenuConfig::BoneColor), ImGuiColorEditFlags_NoInputs);
-				ImGui::SameLine();
-
-				if (ImGui::Button("VisCheck (Bone)"))
+				if (ImGui::IsItemClicked(1))
+				{
 					ImGui::OpenPopup("##bonevis");
-
+				}
 				if (ImGui::BeginPopup("##bonevis"))
 				{
 					ImGui::TextUnformatted("Bone Settings");
@@ -122,31 +125,29 @@ void Cheats::Menu()
 					ImGui::ColorEdit4("##BoneVisColor", reinterpret_cast<float*>(&MenuConfig::BoneVisColor), ImGuiColorEditFlags_NoInputs);
 					ImGui::EndPopup();
 				}
+				ImGui::SameLine();
+				ImGui::ColorEdit4("##BoneColor", reinterpret_cast<float*>(&MenuConfig::BoneColor), ImGuiColorEditFlags_NoInputs);
 
 				ImGui::Checkbox("EyeRay", &MenuConfig::ShowEyeRay);
 				ImGui::SameLine();
 				ImGui::ColorEdit4("##EyeRay", reinterpret_cast<float*>(&MenuConfig::EyeRayColor), ImGuiColorEditFlags_NoInputs);
 
-				ImGui::Checkbox("HealthBar", &MenuConfig::ShowHealthBar);
-				ImGui::Combo("HealthBarType", &MenuConfig::HealthBarType, "Vetical\0Horizontal");
+
+				ImGui::Checkbox("Distance Esp", &MenuConfig::ShowDistance);
+				ImGui::Checkbox("Health Text", &MenuConfig::HealthText);
 
 				ImGui::Checkbox("WeaponText", &MenuConfig::ShowWeaponESP);
 				ImGui::Checkbox("PlayerName", &MenuConfig::ShowPlayerName);
-
-				ImGui::Checkbox("HeadShootLine", &MenuConfig::ShowHeadShootLine);
-				ImGui::SameLine();
-				ImGui::ColorEdit4("##HeadShootLineColor", reinterpret_cast<float*>(&MenuConfig::HeadShootLineColor), ImGuiColorEditFlags_NoInputs);
-
-				ImGui::Checkbox("FovLine", &MenuConfig::ShowFovLine);
-				ImGui::SameLine();
-				ImGui::ColorEdit4("##FovLineColor", reinterpret_cast<float*>(&MenuConfig::FovLineColor), ImGuiColorEditFlags_NoInputs);
-				float FovLineSizeMin = 20.f, FovLineSizeMax = 120.f;
-				Gui.SliderScalarEx1("FovLineSize", ImGuiDataType_Float, &MenuConfig::FovLineSize, &FovLineSizeMin, &FovLineSizeMax, "%.1f", ImGuiSliderFlags_None);
 
 				ImGui::Checkbox("LineToEnemy", &MenuConfig::ShowLineToEnemy);
 				ImGui::SameLine();
 				ImGui::ColorEdit4("##LineToEnemyColor", reinterpret_cast<float*>(&MenuConfig::LineToEnemyColor), ImGuiColorEditFlags_NoInputs);
 
+				ImGui::Checkbox("ESPPreview", &MenuConfig::ESPPreview);
+
+
+
+				ImGui::SeparatorText("Misc");
 				ImGui::Checkbox("CrossHair", &MenuConfig::ShowCrossHair);
 				ImGui::SameLine();
 				ImGui::ColorEdit4("##CrossHairColor", reinterpret_cast<float*>(&CrosshairConfig::CrossHairColor), ImGuiColorEditFlags_NoInputs);
@@ -165,10 +166,123 @@ void Cheats::Menu()
 					ImGui::EndPopup();
 				}
 
-				ImGui::Checkbox("Distance Esp", &MenuConfig::ShowDistance);
-				ImGui::Checkbox("Health Text", &MenuConfig::HealthText);
+				ImGui::Checkbox("HeadShootLine", &MenuConfig::ShowHeadShootLine);
+				ImGui::SameLine();
+				ImGui::ColorEdit4("##HeadShootLineColor", reinterpret_cast<float*>(&MenuConfig::HeadShootLineColor), ImGuiColorEditFlags_NoInputs);
+
+
+				ImGui::Checkbox("FovLine", &MenuConfig::ShowFovLine);
+				ImGui::SameLine();
+				ImGui::ColorEdit4("##FovLineColor", reinterpret_cast<float*>(&MenuConfig::FovLineColor), ImGuiColorEditFlags_NoInputs);
+				float FovLineSizeMin = 20.f, FovLineSizeMax = 120.f;
+				Gui.SliderScalarEx1("FovLineSize", ImGuiDataType_Float, &MenuConfig::FovLineSize, &FovLineSizeMin, &FovLineSizeMax, "%.1f", ImGuiSliderFlags_None);
+
+
 				ImGui::Text("[INSERT] HideMenu");
 
+
+				if (MenuConfig::ESPPreview) {
+					ImGui::SetNextWindowSize(ImVec2(200, 250), ImGuiCond_FirstUseEver);
+					ImGui::SetNextWindowPos(ImVec2(ImGui::GetWindowPos().x + ImGui::GetWindowSize().x, ImGui::GetWindowPos().y), ImGuiCond_FirstUseEver);
+					ImGui::End();
+					ImGui::Begin("ESPPreview", &MenuConfig::ESPPreview, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize);
+
+					ImVec2 windowSize = ImGui::GetWindowSize();
+					ImVec2 rectSize(100, 150);
+					ImVec2 rectPos((windowSize.x - rectSize.x) * 0.45f, (windowSize.y - rectSize.y) * 0.3f);
+
+					ImVec2 centerPos = ImGui::GetCursorScreenPos();
+					centerPos.x += rectPos.x;
+					centerPos.y += rectPos.y;
+
+					if (MenuConfig::ShowBoxESP) {
+						ImU32 boxColor = MenuConfig::BoxColor;
+						ImVec2 rectStartPos = centerPos;
+						ImVec2 rectEndPos(rectStartPos.x + rectSize.x, rectStartPos.y + rectSize.y);
+						ImGui::GetWindowDrawList()->AddRect(rectStartPos, rectEndPos, IM_COL32(0, 0, 0, 255), 0.0f, ImDrawCornerFlags_All, 2.0f);//outline
+						ImGui::GetWindowDrawList()->AddRect(rectStartPos, rectEndPos, boxColor, 0.0f, ImDrawCornerFlags_All, 1.0f); // mainrec
+					}
+					if (MenuConfig::ShowEyeRay) {
+						ImU32 EyeC = MenuConfig::EyeRayColor;
+						ImVec2 lineStart(centerPos.x + 50, centerPos.y + 15);
+						ImVec2 lineEnd(centerPos.x + 95, centerPos.y + 15);
+						ImGui::GetWindowDrawList()->AddLine(lineStart, lineEnd, EyeC, 2.0f);
+
+					}
+					if (MenuConfig::ShowBoneESP) {
+						ImU32 boneColor = MenuConfig::BoneColor;
+						ImVec2 lineStart(centerPos.x + 50, centerPos.y + 15);
+						ImVec2 lineEnd(centerPos.x + 50, centerPos.y + 110);
+						ImGui::GetWindowDrawList()->AddLine(lineStart, lineEnd, boneColor, 2.0f);
+						ImVec2 Rarm(centerPos.x + 50, centerPos.y + 30);
+						ImVec2 Rarme(centerPos.x + 30, centerPos.y + 60);
+						ImGui::GetWindowDrawList()->AddLine(Rarm, Rarme, boneColor, 2.0f);
+						ImVec2 Larm(centerPos.x + 50, centerPos.y + 30);
+						ImVec2 Larme(centerPos.x + 70, centerPos.y + 60);
+						ImGui::GetWindowDrawList()->AddLine(Larm, Larme, boneColor, 2.0f);
+						ImVec2 Rleg(centerPos.x + 50, centerPos.y + 110);
+						ImVec2 Rlege(centerPos.x + 30, centerPos.y + 140);
+						ImGui::GetWindowDrawList()->AddLine(Rleg, Rlege, boneColor, 2.0f);
+						ImVec2 Lleg(centerPos.x + 50, centerPos.y + 110);
+						ImVec2 Llege(centerPos.x + 70, centerPos.y + 140);
+						ImGui::GetWindowDrawList()->AddLine(Lleg, Llege, boneColor, 2.0f);
+					}
+
+					//Healthbar
+					if (MenuConfig::ShowHealthBar) {
+						ImU32 greenColor = IM_COL32(0, 255, 0, 255);
+						if (MenuConfig::HealthBarType == 0) {
+							ImVec2 HBS(centerPos.x - 8, centerPos.y);
+							ImVec2 HBE(centerPos.x - 3, centerPos.y + rectSize.y);
+							ImGui::GetWindowDrawList()->AddRectFilled(HBS, HBE, greenColor, 0.0f, ImDrawCornerFlags_All);
+						}
+						if (MenuConfig::HealthBarType == 1) {
+							ImVec2 HBS(centerPos.x, centerPos.y - 6);
+							ImVec2 HBE(centerPos.x + rectSize.x, centerPos.y - 3);
+							ImGui::GetWindowDrawList()->AddRectFilled(HBS, HBE, greenColor, 0.0f, ImDrawCornerFlags_All);
+						}
+						if (MenuConfig::HealthBarType == 2) {
+							ImVec2 HBS(centerPos.x, centerPos.y + rectSize.y + 6);
+							ImVec2 HBE(centerPos.x + rectSize.x, centerPos.y + rectSize.y + 3);
+							ImGui::GetWindowDrawList()->AddRectFilled(HBS, HBE, greenColor, 0.0f, ImDrawCornerFlags_All);
+						}
+
+					}
+
+					//name text
+					if (MenuConfig::ShowPlayerName) {
+						if (MenuConfig::HealthBarType == 0 || MenuConfig::HealthBarType == 2) {
+							ImVec2 textPos(centerPos.x + 18, centerPos.y - 18);
+							ImGui::GetWindowDrawList()->AddText(textPos, IM_COL32(255, 255, 255, 255), "PlayerName");
+						}
+						if (MenuConfig::HealthBarType == 1) {
+							ImVec2 textPos(centerPos.x + 18, centerPos.y - 22);
+							ImGui::GetWindowDrawList()->AddText(textPos, IM_COL32(255, 255, 255, 255), "PlayerName");
+						}
+					}
+					//distance text
+					if (MenuConfig::ShowDistance) {
+						ImVec2 textPos(centerPos.x + 105, centerPos.y);
+						ImGui::GetWindowDrawList()->AddText(textPos, IM_COL32(255, 255, 255, 255), "20m");
+					}
+					if (MenuConfig::HealthText) {
+						ImVec2 textPos(centerPos.x + 105, centerPos.y + 16);
+						ImGui::GetWindowDrawList()->AddText(textPos, IM_COL32(255, 255, 255, 255), "100");
+					}
+
+					//weapon text
+					if (MenuConfig::ShowWeaponESP) {
+						if (MenuConfig::HealthBarType == 2) {
+							ImVec2 textPos(centerPos.x + 29, centerPos.y + 155);
+							ImGui::GetWindowDrawList()->AddText(textPos, IM_COL32(255, 255, 255, 255), "Weapon");
+						}
+						if (MenuConfig::HealthBarType == 0 || MenuConfig::HealthBarType == 1) {
+							ImVec2 textPos(centerPos.x + 29, centerPos.y + 150);
+							ImGui::GetWindowDrawList()->AddText(textPos, IM_COL32(255, 255, 255, 255), "Weapon");
+						}
+					}
+					ImGui::End();
+				}
 			}
 			else if (tabb == 1) {
 				//aimbot
@@ -408,15 +522,6 @@ void Cheats::Run()
 		if (!Entity.IsInScreen())
 			continue;
 
-		// Bone Debug
-	/*	for (int BoneIndex = 0; BoneIndex < Entity.BoneData.BonePosList.size(); BoneIndex++)
-		{
-			Vec2 ScreenPos{};
-			if (gGame.View.WorldToScreen(Entity.BoneData.BonePosList[BoneIndex].Pos, ScreenPos))
-			{
-				Gui.Text(std::to_string(BoneIndex), ScreenPos, ImColor(255, 255, 255, 255));
-			}
-		}*/
 
 		DistanceToSight = Entity.GetBone().BonePosList[BONEINDEX::head].ScreenPos.DistanceTo({ Gui.Window.Size.x / 2,Gui.Window.Size.y / 2 });
 
@@ -436,10 +541,10 @@ void Cheats::Run()
 		}
 
 		// Draw Bone
-		if (MenuConfig::ShowBoneESP) {
-			Render::DrawBone(Entity, MenuConfig::BoneColor, 1.3);
 
-			//visible bone esp
+
+		if (MenuConfig::ShowBoneESP) {
+			Render::DrawBone(Entity, MenuConfig::BoneColor, 1);
 			if (MenuConfig::VisibleEsp) {
 				if ((Entity.Pawn.bSpottedByMask & (DWORD64(1) << LocalPlayerControllerIndex)) ||
 					(LocalEntity.Pawn.bSpottedByMask & (DWORD64(1) << i))) {
@@ -449,14 +554,18 @@ void Cheats::Run()
 					Render::DrawBone(Entity, MenuConfig::BoneColor, 1.3);
 				}
 			}
-			else if (!MenuConfig::VisibleCheck) {
+			else {
 				Render::DrawBone(Entity, MenuConfig::BoneColor, 1.3);
 			}
 		}
 
+
+
+
+
 		// Draw eyeRay
 		if (MenuConfig::ShowEyeRay)
-			Render::ShowLosLine(Entity, 50, MenuConfig::EyeRayColor, 1.3);
+			Render::ShowLosLine(Entity, 50, MenuConfig::EyeRayColor, 1);
 
 		// Box
 		ImVec4 Rect;
@@ -479,7 +588,6 @@ void Cheats::Run()
 		// Draw Box
 		if (MenuConfig::ShowBoxESP) {
 			Gui.Rectangle({ Rect.x, Rect.y }, { Rect.z, Rect.w }, { 0, 0, 0, 255 }, 3);
-			//Box Vis Check
 			if (MenuConfig::EspVisCheck) {
 				if ((Entity.Pawn.bSpottedByMask & (DWORD64(1) << LocalPlayerControllerIndex)) ||
 					(LocalEntity.Pawn.bSpottedByMask & (DWORD64(1) << i))) {
@@ -494,24 +602,28 @@ void Cheats::Run()
 			}
 		}
 
-		// Draw HealthBar
 		if (MenuConfig::ShowHealthBar)
 		{
 			ImVec2 HealthBarPos, HealthBarSize;
 			if (MenuConfig::HealthBarType == 0)
 			{
-				// Vertical
-				HealthBarPos = { Rect.x - 7.f,Rect.y };
-				HealthBarSize = { 4 ,Rect.w };
+				HealthBarPos = { Rect.x - 7.f, Rect.y };
+				HealthBarSize = { 4, Rect.w };
 			}
-			else
+			else if (MenuConfig::HealthBarType == 1)
+			{
+				HealthBarPos = { Rect.x, Rect.y - 6 };
+				HealthBarSize = { Rect.z, 4 };
+			}
+			else if (MenuConfig::HealthBarType == 2)
 			{
 				// Horizontal
-				HealthBarPos = { Rect.x + Rect.z / 2 - 70 / 2,Rect.y - 13 };
-				HealthBarSize = { 70,4 };
+				HealthBarPos = { Rect.x, Rect.y + Rect.w + 2 };
+				HealthBarSize = { Rect.z, 4 };
 			}
 			Render::DrawHealthBar(EntityAddress, 100, Entity.Pawn.Health, HealthBarPos, HealthBarSize, MenuConfig::HealthBarType);
 		}
+
 
 		if (MenuConfig::ShowDistance)
 		{
@@ -519,25 +631,30 @@ void Cheats::Run()
 			char buffer[0x48];
 			sprintf_s(buffer, "%im", distance);
 			std::string dis_str = buffer;
-			Gui.StrokeText(dis_str, { Rect.x + Rect.z + 4, Rect.y }, ImColor(255, 255, 255, 255), 12, false);
+			Gui.StrokeText(dis_str, { Rect.x + Rect.z + 4, Rect.y }, ImColor(255, 255, 255, 255), 14, false);
 		}
 
 		if (MenuConfig::HealthText)
 		{
 			std::string yourString = std::to_string(Entity.Pawn.Health);
-			Gui.StrokeText(yourString, { Rect.x + Rect.z + 4, Rect.y + 10 }, ImColor(255, 255, 255, 255), 12, false);
+			Gui.StrokeText(yourString, { Rect.x + Rect.z + 4, Rect.y + 13 }, ImColor(255, 255, 255, 255), 14, false);
 		}
 
-		// Draw weaponName
-		if (MenuConfig::ShowWeaponESP)
-			Gui.StrokeText(Entity.Pawn.WeaponName, { Rect.x,Rect.y + Rect.w }, ImColor(255, 255, 255, 255), 12);
+		if (MenuConfig::ShowWeaponESP) {
+			if (MenuConfig::HealthBarType == 0 || MenuConfig::HealthBarType == 1)
+				Gui.StrokeText(Entity.Pawn.WeaponName, { Rect.x + Rect.z / 2,Rect.y + Rect.w }, ImColor(255, 255, 255, 255), 14, true);
+			else if (MenuConfig::HealthBarType == 2)
+				Gui.StrokeText(Entity.Pawn.WeaponName, { Rect.x + Rect.z / 2,Rect.y + Rect.w + 5 }, ImColor(255, 255, 255, 255), 14, true);
+		}
+
+
 
 		if (MenuConfig::ShowPlayerName)
 		{
-			if (MenuConfig::HealthBarType == 0)
-				Gui.StrokeText(Entity.Controller.PlayerName, { Rect.x + Rect.z / 2,Rect.y - 14 }, ImColor(255, 255, 255, 255), 12, true);
-			else
-				Gui.StrokeText(Entity.Controller.PlayerName, { Rect.x + Rect.z / 2,Rect.y - 13 - 14 }, ImColor(255, 255, 255, 255), 12, true);
+			if (MenuConfig::HealthBarType == 0 || MenuConfig::HealthBarType == 2)
+				Gui.StrokeText(Entity.Controller.PlayerName, { Rect.x + Rect.z / 2, Rect.y - 14 }, ImColor(255, 255, 255, 255), 14, true);
+			else if (MenuConfig::HealthBarType == 1)
+				Gui.StrokeText(Entity.Controller.PlayerName, { Rect.x + Rect.z / 2, Rect.y - 20 }, ImColor(255, 255, 255, 255), 14, true);
 		}
 	}
 
@@ -561,9 +678,7 @@ void Cheats::Run()
 		RenderCrossHair(ImGui::GetBackgroundDrawList());
 	}
 
-	// Fov circle
-	if (MenuConfig::ShowAimFovRange)
-		Render::DrawFovCircle(LocalEntity);
+
 
 	// TriggerBot
 	if (MenuConfig::TriggerBot && GetAsyncKeyState(TriggerBot::HotKey))
@@ -571,11 +686,18 @@ void Cheats::Run()
 		TriggerBot::Run(LocalEntity);
 	}
 
-	if (MenuConfig::AimBot && GetAsyncKeyState(AimControl::HotKey))
+	if (MenuConfig::AimBot)
 	{
-		if (AimPos != Vec3(0, 0, 0))
+		if (MenuConfig::ShowAimFovRange) {
+			Render::DrawFovCircle(LocalEntity);
+		}
+		if (GetAsyncKeyState(AimControl::HotKey))
 		{
-			AimControl::AimBot(LocalEntity, LocalEntity.Pawn.CameraPos, AimPos);
+
+			if (AimPos != Vec3(0, 0, 0))
+			{
+				AimControl::AimBot(LocalEntity, LocalEntity.Pawn.CameraPos, AimPos);
+			}
 		}
 	}
 }

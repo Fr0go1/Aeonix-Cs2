@@ -11,6 +11,7 @@ namespace MenuConfig
 	inline bool ShowEyeRay = true;
 	inline bool ShowPlayerName = true;
 	inline bool SpectateEsp = false;
+	inline bool ESPPreview = false;
 
 	inline bool ShowAimFovRange = true;
 	inline ImColor AimFovRangeColor = ImColor(230, 230, 230, 255);
@@ -31,6 +32,10 @@ namespace MenuConfig
 	inline ImColor BoxColor = ImColor(255, 255, 255, 255);
 	inline ImColor EyeRayColor = ImColor(255, 0, 0, 255);
 
+
+	inline ImColor HealthbarMax = ImColor(0, 255, 0, 255);
+	inline ImColor HealthbarMin = ImColor(255, 0, 0, 255);
+
 	inline bool ShowMenu = true;
 	inline bool VisibleEsp = true;
 	inline bool ShowRadar = true;
@@ -49,7 +54,7 @@ namespace MenuConfig
 	inline bool OBSBypass = true;
 
 	inline bool HealthText = true;
-	
+
 	inline bool ShowHeadShootLine = true;
 	inline ImColor HeadShootLineColor = ImColor(255, 255, 255, 255);
 

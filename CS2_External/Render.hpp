@@ -103,7 +103,6 @@ namespace Render
 		Gui.RectangleFilled(Vec2{ Pos.x + 6, Pos.y }, Vec2{ 17, 3 }, Color);
 	}
 
-	// �������
 	ImVec4 Get2DBox(const CEntity& Entity)
 	{
 		BoneJointPos Head = Entity.GetBone().BonePosList[BONEINDEX::head];
@@ -117,7 +116,6 @@ namespace Render
 		return ImVec4{ Pos.x,Pos.y,Size.x,Size.y };
 	}
 
-	// ��������
 	void DrawBone(const CEntity& Entity, ImColor Color, float Thickness)
 	{
 		BoneJointPos Previous, Current;
@@ -143,7 +141,6 @@ namespace Render
 		}
 	}
 
-	// �������
 	void ShowLosLine(const CEntity& Entity, const float Length, ImColor Color, float Thickness)
 	{
 		Vec2 StartPoint, EndPoint;
@@ -164,7 +161,6 @@ namespace Render
 		Gui.Line(StartPoint, EndPoint, Color, Thickness);
 	}
 
-	// 2D���������
 	ImVec4 Get2DBoneRect(const CEntity& Entity)
 	{
 		Vec2 Min, Max, Size;
@@ -190,211 +186,107 @@ namespace Render
 	private:
 		using TimePoint_ = std::chrono::steady_clock::time_point;
 	private:
-		// ��ʾ����Ѫ��ʱ��(ms)
 		const int ShowBackUpHealthDuration = 500;
-		// ���Ѫ��
 		float MaxHealth = 0.f;
-		// ��ǰѪ��
 		float CurrentHealth = 0.f;
-		// �������Ѫ����С
 		float LastestBackupHealth = 0.f;
-		// Ѫ������
 		ImVec2 RectPos{};
-		// Ѫ����С
 		ImVec2 RectSize{};
-		// ������ʾ����Ѫ��
 		bool InShowBackupHealth = false;
-		// ��ʾ����Ѫ����ʼʱ���
 		TimePoint_ BackupHealthTimePoint{};
 	public:
 		HealthBar() {}
-		// ����
 		void DrawHealthBar_Horizontal(float MaxHealth, float CurrentHealth, ImVec2 Pos, ImVec2 Size);
-		// ����
 		void DrawHealthBar_Vertical(float MaxHealth, float CurrentHealth, ImVec2 Pos, ImVec2 Size);
 	private:
-		// ��ɫ����
 		ImColor Mix(ImColor Col_1, ImColor Col_2, float t);
-		// ��һ�׶�Ѫ����ɫ 0.5-1
-		ImColor FirstStageColor = ImColor(96, 246, 113, 220);
-		// �ڶ��׶�Ѫ����ɫ 0.5-0.2
-		ImColor SecondStageColor = ImColor(247, 214, 103, 220);
-		// �����׶�Ѫ����ɫ 0.2-0.0
-		ImColor ThirdStageColor = ImColor(255, 95, 95, 220);
-		// ����Ѫ����ɫ
+		ImColor FirstStageColor = MenuConfig::HealthbarMax;
+		ImColor ThirdStageColor = MenuConfig::HealthbarMin;
 		ImColor BackupHealthColor = ImColor(255, 255, 255, 220);
-		// �߿���ɫ
-		ImColor FrameColor = ImColor(45, 45, 45, 220);
-		// ������ɫ
-		ImColor BackGroundColor = ImColor(90, 90, 90, 220);
+		ImColor FrameColor = ImColor(20, 20, 20, 220);
+		ImColor BackGroundColor = ImColor(20, 20, 20, 220);
 	};
+
+
 
 	void HealthBar::DrawHealthBar_Horizontal(float MaxHealth, float CurrentHealth, ImVec2 Pos, ImVec2 Size)
 	{
-		auto InRange = [&](float value, float min, float max) -> bool
-			{
-				return value > min && value <= max;
-			};
-
 		ImDrawList* DrawList = ImGui::GetBackgroundDrawList();
 
 		this->MaxHealth = MaxHealth;
-		this->CurrentHealth = CurrentHealth;
 		this->RectPos = Pos;
 		this->RectSize = Size;
 
-		// Calculate the proportion of health
+		float AnimationSpeed = 1.0f;
 		float Proportion = CurrentHealth / MaxHealth;
-		// Calculate the width of the health bar
-		float Width = RectSize.x * Proportion;
-		// Determine the health bar color
-		ImColor Color;
 
-		// Draw the background
-		DrawList->AddRectFilled(RectPos,
-			{ RectPos.x + RectSize.x, RectPos.y + RectSize.y },
-			BackGroundColor);
+		float BarWidth = Size.x * Proportion;
+		float BarHeight = Size.y;
 
-		// Interpolate color
-		float Color_Lerp_t = pow(Proportion, 2.5);
-		if (InRange(Proportion, 0.5, 1))
-			Color = Mix(FirstStageColor, SecondStageColor, Color_Lerp_t * 3 - 1);
-		else
-			Color = Mix(SecondStageColor, ThirdStageColor, Color_Lerp_t * 4);
-
-		// �����������Ѫ��
-		if (LastestBackupHealth == 0
-			|| LastestBackupHealth < CurrentHealth)
-			LastestBackupHealth = CurrentHealth;
-
-		if (LastestBackupHealth != CurrentHealth)
+		if (CurrentHealth > LastestBackupHealth)
 		{
-			if (!InShowBackupHealth)
-			{
-				BackupHealthTimePoint = std::chrono::steady_clock::now();
-				InShowBackupHealth = true;
-			}
-
-			std::chrono::steady_clock::time_point CurrentTime = std::chrono::steady_clock::now();
-			if (CurrentTime - BackupHealthTimePoint > std::chrono::milliseconds(ShowBackUpHealthDuration))
-			{
-				// ��ʱ��ֹͣ��ʾ����Ѫ�������Ҹ����������Ѫ��
+			LastestBackupHealth += AnimationSpeed;
+			if (LastestBackupHealth > CurrentHealth)
 				LastestBackupHealth = CurrentHealth;
-				InShowBackupHealth = false;
-			}
-
-			if (InShowBackupHealth)
-			{
-				// ����Ѫ�����ƿ���
-				float BackupHealthWidth = LastestBackupHealth / MaxHealth * RectSize.x;
-				// ����Ѫ��alpha����
-				float BackupHealthColorAlpha = 1 - 0.95 * (std::chrono::duration_cast<std::chrono::milliseconds>(CurrentTime - BackupHealthTimePoint).count() / (float)ShowBackUpHealthDuration);
-				ImColor BackupHealthColorTemp = BackupHealthColor;
-				BackupHealthColorTemp.Value.w = BackupHealthColorAlpha;
-				// ����Ѫ�����Ȼ���
-				float BackupHealthWidth_Lerp = 1 * (std::chrono::duration_cast<std::chrono::milliseconds>(CurrentTime - BackupHealthTimePoint).count() / (float)ShowBackUpHealthDuration);
-				BackupHealthWidth_Lerp *= (BackupHealthWidth - Width);
-				BackupHealthWidth -= BackupHealthWidth_Lerp;
-				// ����Ѫ��
-				DrawList->AddRectFilled(RectPos,
-					{ RectPos.x + BackupHealthWidth,RectPos.y + RectSize.y },
-					BackupHealthColorTemp, 5);
-			}
+		}
+		else
+		{
+			LastestBackupHealth -= AnimationSpeed;
+			if (LastestBackupHealth < CurrentHealth)
+				LastestBackupHealth = CurrentHealth;
 		}
 
-		// Draw the health bar with thinner lines
-		DrawList->AddRectFilled(RectPos,
-			{ RectPos.x + Width, RectPos.y + RectSize.y },
-			Color, 0.0f); // Set line thickness to 0 for a very thin bar
+		ImColor Color = Mix(FirstStageColor, ThirdStageColor, Proportion);
 
-		// Draw the border with thinner lines
-		DrawList->AddRect(RectPos,
-			{ RectPos.x + RectSize.x, RectPos.y + RectSize.y },
-			FrameColor, 0.2f); // Set line thickness to 0 for a very thin border
+		// Background Box
+		DrawList->AddRectFilled(RectPos, { RectPos.x + RectSize.x, RectPos.y + RectSize.y }, BackGroundColor, 1);
+
+		// Health Bar
+		ImVec2 BarStart = Pos;
+		ImVec2 BarEnd = { BarStart.x + BarWidth, BarStart.y + BarHeight };
+		DrawList->AddRectFilled(BarStart, BarEnd, Color, 0);
+
+		// Frame
+		DrawList->AddRect(RectPos, { RectPos.x + RectSize.x, RectPos.y + RectSize.y }, FrameColor, 0, 3);
 	}
+
 
 	void HealthBar::DrawHealthBar_Vertical(float MaxHealth, float CurrentHealth, ImVec2 Pos, ImVec2 Size)
 	{
-		auto InRange = [&](float value, float min, float max) -> bool
-			{
-				return value > min && value <= max;
-			};
-
 		ImDrawList* DrawList = ImGui::GetBackgroundDrawList();
 
 		this->MaxHealth = MaxHealth;
-		this->CurrentHealth = CurrentHealth;
 		this->RectPos = Pos;
 		this->RectSize = Size;
 
-		// Calculate the proportion of health
+		float AnimationSpeed = 1.0f;
 		float Proportion = CurrentHealth / MaxHealth;
-		// Calculate the height of the health bar
 		float Height = RectSize.y * Proportion;
-		// Determine the health bar color
-		ImColor Color;
 
-		// Draw the background
-		DrawList->AddRectFilled(RectPos,
-			{ RectPos.x + RectSize.x, RectPos.y + RectSize.y },
-			BackGroundColor);
-
-		// Interpolate color
-		float Color_Lerp_t = pow(Proportion, 2.5);
-		if (InRange(Proportion, 0.5, 1))
-			Color = Mix(FirstStageColor, SecondStageColor, Color_Lerp_t * 3 - 1);
-		else
-			Color = Mix(SecondStageColor, ThirdStageColor, Color_Lerp_t * 4);
-
-		// �����������Ѫ��
-		if (LastestBackupHealth == 0
-			|| LastestBackupHealth < CurrentHealth)
-			LastestBackupHealth = CurrentHealth;
-
-		if (LastestBackupHealth != CurrentHealth)
+		if (CurrentHealth > LastestBackupHealth)
 		{
-			if (!InShowBackupHealth)
-			{
-				BackupHealthTimePoint = std::chrono::steady_clock::now();
-				InShowBackupHealth = true;
-			}
-
-			std::chrono::steady_clock::time_point CurrentTime = std::chrono::steady_clock::now();
-			if (CurrentTime - BackupHealthTimePoint > std::chrono::milliseconds(ShowBackUpHealthDuration))
-			{
-				// ��ʱ��ֹͣ��ʾ����Ѫ�������Ҹ����������Ѫ��
+			LastestBackupHealth += AnimationSpeed;
+			if (LastestBackupHealth > CurrentHealth)
 				LastestBackupHealth = CurrentHealth;
-				InShowBackupHealth = false;
-			}
-
-			if (InShowBackupHealth)
-			{
-				// ����Ѫ�����Ƹ߶�
-				float BackupHealthHeight = LastestBackupHealth / MaxHealth * RectSize.y;
-				// ����Ѫ��alpha����
-				float BackupHealthColorAlpha = 1 - 0.95 * (std::chrono::duration_cast<std::chrono::milliseconds>(CurrentTime - BackupHealthTimePoint).count() / (float)ShowBackUpHealthDuration);
-				ImColor BackupHealthColorTemp = BackupHealthColor;
-				BackupHealthColorTemp.Value.w = BackupHealthColorAlpha;
-				// ����Ѫ���߶Ȼ���
-				float BackupHealthHeight_Lerp = 1 * (std::chrono::duration_cast<std::chrono::milliseconds>(CurrentTime - BackupHealthTimePoint).count() / (float)ShowBackUpHealthDuration);
-				BackupHealthHeight_Lerp *= (BackupHealthHeight - Height);
-				BackupHealthHeight -= BackupHealthHeight_Lerp;
-				// ����Ѫ��
-				DrawList->AddRectFilled({ RectPos.x,RectPos.y + RectSize.y - BackupHealthHeight },
-					{ RectPos.x + RectSize.x,RectPos.y + RectSize.y },
-					BackupHealthColorTemp, 5);
-			}
+		}
+		else
+		{
+			LastestBackupHealth -= AnimationSpeed;
+			if (LastestBackupHealth < CurrentHealth)
+				LastestBackupHealth = CurrentHealth;
 		}
 
-		// Draw the health bar with thinner lines
-		DrawList->AddRectFilled({ RectPos.x, RectPos.y + RectSize.y - Height },
-			{ RectPos.x + RectSize.x, RectPos.y + RectSize.y },
-			Color, 0.0f);
+		ImColor Color = Mix(FirstStageColor, ThirdStageColor, Proportion);
 
-		// Draw the border with thinner lines
-		DrawList->AddRect(RectPos,
-			{ RectPos.x + RectSize.x, RectPos.y + RectSize.y },
-			FrameColor, 0.2f);
+		// Background
+		DrawList->AddRectFilled(RectPos, { RectPos.x + RectSize.x, RectPos.y + RectSize.y }, BackGroundColor, 1);
+
+		// Health bar
+		DrawList->AddRectFilled({ RectPos.x, RectPos.y + RectSize.y - LastestBackupHealth / MaxHealth * RectSize.y },
+			{ RectPos.x + RectSize.x, RectPos.y + RectSize.y }, Color, 1, 0);
+
+		// Frame
+		DrawList->AddRect(RectPos, { RectPos.x + RectSize.x, RectPos.y + RectSize.y }, FrameColor, 0, 3);
 	}
 
 	ImColor HealthBar::Mix(ImColor Col_1, ImColor Col_2, float t)
@@ -407,7 +299,6 @@ namespace Render
 		return Col;
 	}
 
-	// Sign�����κ����͵��˱�ʶ��Ĭ�Ͽɴ����˵�ַ
 	void DrawHealthBar(DWORD Sign, float MaxHealth, float CurrentHealth, ImVec2 Pos, ImVec2 Size, bool Horizontal)
 	{
 		static std::map<DWORD, HealthBar> HealthBarMap;
