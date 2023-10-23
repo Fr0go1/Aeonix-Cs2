@@ -347,6 +347,23 @@ void Cheats::Menu()
 				Gui.SliderScalarEx1("Proportion", ImGuiDataType_Float, &MenuConfig::Proportion, &ProportionMin, &ProportionMax, "%.1f", ImGuiSliderFlags_None);
 				Gui.SliderScalarEx1("RadarRange", ImGuiDataType_Float, &MenuConfig::RadarRange, &RadarRangeMin, &RadarRangeMax, "%.1f", ImGuiSliderFlags_None);
 				Gui.SliderScalarEx1("RadarBgAlpha", ImGuiDataType_Float, &MenuConfig::RadarBgAlpha, &RadarBgAlphaMin, &RadarBgAlphaMax, "%.3f", ImGuiSliderFlags_None);
+
+				//float WatermarkAlphaMax = 1.0f;
+				//float WatermarkAlphaMin = 0.0f;
+				ImGui::Checkbox("WaterMark", &MenuConfig::WaterMark);
+				ImGui::SameLine();
+				if (ImGui::Button("..."))
+					ImGui::OpenPopup("##...");
+				if (ImGui::BeginPopup("##..."))
+				{
+					ImGui::TextUnformatted("Settings");
+					ImGui::Checkbox("Cheat Name", &MenuConfig::watermarkcheat);
+					ImGui::Checkbox("Fps", &MenuConfig::watermarkfps);
+					ImGui::Checkbox("Time", &MenuConfig::watermarktime);
+					ImGui::Checkbox("Username", &MenuConfig::watermarkuser);
+					//Gui.SliderScalarEx1("WatermarkAlpha", ImGuiDataType_Float, &Watermark::watermarkalpha, &WatermarkAlphaMax, &WatermarkAlphaMax, "%.35f", ImGuiSliderFlags_None);
+					ImGui::EndPopup();
+				}
 				ImGui::Text("[INSERT] HideMenu");
 			}
 			else if (tabb == 3) {
@@ -685,6 +702,8 @@ void Cheats::Run()
 	{
 		TriggerBot::Run(LocalEntity);
 	}
+
+	Watermark::Render();
 
 	if (MenuConfig::AimBot)
 	{

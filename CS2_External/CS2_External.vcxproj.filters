@@ -124,6 +124,9 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="Utils\Format.hpp" />
     <ClInclude Include="globals.cpp" />
+    <ClInclude Include="Utils\Watermarkshit.hpp" />
+    <ClInclude Include="Utils\Globalvars.hpp" />
+    <ClInclude Include="Utils\Globals.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OS-ImGui\imgui\imgui.cpp">
@@ -185,6 +188,7 @@
     </ClCompile>
     <ClCompile Include="Cheats.cpp" />
     <ClCompile Include="Utils\keys.cpp" />
+    <ClCompile Include="Utils\Globalvars.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="font\stratum2.ttf" />

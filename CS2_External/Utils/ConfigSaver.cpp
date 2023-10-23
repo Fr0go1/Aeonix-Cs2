@@ -97,6 +97,11 @@ namespace MyConfigSaver {
         configFile << "Style " << MenuConfig::styleee << std::endl;
         configFile << "StyleIndex " << MenuConfig::selectedStyleIndex << std::endl;
         configFile << "EspVisCheck " << MenuConfig::EspVisCheck << std::endl;
+        configFile << "WaterMark " << MenuConfig::WaterMark << std::endl;
+        configFile << "watermarkcheat " << MenuConfig::watermarkcheat << std::endl;
+        configFile << "watermarkfps " << MenuConfig::watermarkfps << std::endl;
+        configFile << "watermarktime " << MenuConfig::watermarktime << std::endl;
+        configFile << "watermarkuser " << MenuConfig::watermarkuser << std::endl;
         configFile.close();
         std::cout << "Configuration saved to " << filename << std::endl;
     }
@@ -190,6 +195,11 @@ namespace MyConfigSaver {
                 else if (key == "RadarBgAlpha") iss >> MenuConfig::RadarBgAlpha;
                 else if (key == "StyleIndex") iss >> MenuConfig::selectedStyleIndex;
                 else if (key == "EspVisCheck") iss >> MenuConfig::EspVisCheck;
+                else if (key == "WaterMark") iss >> MenuConfig::WaterMark;
+                else if (key == "watermarkcheat") iss >> MenuConfig::watermarkcheat;
+                else if (key == "watermarkfps") iss >> MenuConfig::watermarkfps;
+                else if (key == "watermarktime") iss >> MenuConfig::watermarktime;
+                else if (key == "watermarkuser") iss >> MenuConfig::watermarkuser;
             }
         }
 

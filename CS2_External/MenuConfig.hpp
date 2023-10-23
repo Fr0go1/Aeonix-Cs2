@@ -76,6 +76,12 @@ namespace MenuConfig
 
 	inline bool EspVisCheck = true;
 	inline ImColor VisibleColor = ImColor(255, 255, 0, 255);
+
+	inline bool WaterMark = true;
+	inline bool watermarkcheat = true;
+	inline bool watermarkuser = true;
+	inline bool watermarkfps = true;
+	inline bool watermarktime = true;
 }
 
 namespace CrosshairConfig
