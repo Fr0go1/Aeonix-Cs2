@@ -11,7 +11,7 @@ namespace ConfigMenu {
 
 	void RenderConfigMenu() {
 		// Config
-		ImGui::Text("-Config-");
+		ImGui::SeparatorText("Config System");
 		static char configNameBuffer[128] = "";
 
 		ImGui::InputText("New Config Name", configNameBuffer, sizeof(configNameBuffer));

@@ -103,6 +103,7 @@ namespace MyConfigSaver {
         configFile << "watermarkfps " << MenuConfig::watermarkfps << std::endl;
         configFile << "watermarktime " << MenuConfig::watermarktime << std::endl;
         configFile << "watermarkuser " << MenuConfig::watermarkuser << std::endl;
+        configFile << "CheatList" << MenuConfig::CheatList << std::endl;
         configFile.close();
         std::cout << "Configuration saved to " << filename << std::endl;
     }
@@ -202,6 +203,7 @@ namespace MyConfigSaver {
                 else if (key == "watermarkfps") iss >> MenuConfig::watermarkfps;
                 else if (key == "watermarktime") iss >> MenuConfig::watermarktime;
                 else if (key == "watermarkuser") iss >> MenuConfig::watermarkuser;
+                else if (key == "CheatList") iss >> MenuConfig::CheatList;
             }
         }
 

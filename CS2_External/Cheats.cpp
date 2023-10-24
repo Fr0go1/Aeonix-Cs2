@@ -147,10 +147,11 @@ void Cheats::Menu()
 				ImGui::Combo("Line Pos", &MenuConfig::SnapLinePos, "Top\0Center\0Bottom");
 
 				ImGui::Checkbox("ESPPreview", &MenuConfig::ESPPreview);
+				ImGui::Checkbox("Cheat List", &MenuConfig::CheatList);
 
 
 
-				ImGui::SeparatorText("Misc");
+				ImGui::SeparatorText("Misc Visuals");
 				ImGui::Checkbox("CrossHair", &MenuConfig::ShowCrossHair);
 				ImGui::SameLine();
 				ImGui::ColorEdit4("##CrossHairColor", reinterpret_cast<float*>(&CrosshairConfig::CrossHairColor), ImGuiColorEditFlags_NoInputs);
@@ -289,7 +290,7 @@ void Cheats::Menu()
 			}
 			else if (tabb == 1) {
 				//aimbot
-				ImGui::Text("-Aimbot-");
+				ImGui::SeparatorText("Aimbot");
 
 				ImGui::Checkbox("AimBot", &MenuConfig::AimBot);
 				ImGui::SameLine();
@@ -334,7 +335,7 @@ void Cheats::Menu()
 			}
 			else if (tabb == 2) {
 				//radar
-				ImGui::Text("-Misc-");
+				ImGui::SeparatorText("Misc");
 				ImGui::Checkbox("Radar", &MenuConfig::ShowRadar);
 				ImGui::Combo("RadarType", &MenuConfig::RadarType, "Circle\0Arrow\0CircleWithArrow");
 
@@ -371,7 +372,7 @@ void Cheats::Menu()
 			}
 			else if (tabb == 3) {
 				//triggerbot
-				ImGui::Text("-Triggerbot-");
+				ImGui::SeparatorText("Triggerbot");
 
 				ImGui::Checkbox("TriggerBot", &MenuConfig::TriggerBot);
 				ImGui::SameLine();
@@ -394,6 +395,7 @@ void Cheats::Menu()
 				ImGui::Text("[INSERT] HideMenu");
 			}
 			else if (tabb == 5) {
+				ImGui::SeparatorText("Settings");
 				ImGui::Combo("Select Style", &MenuConfig::selectedStyleIndex, "Purple\0Future Dark\0Peach\0");
 				switch (MenuConfig::selectedStyleIndex) {
 				case 0:
@@ -457,6 +459,10 @@ void Cheats::RenderCrossHair(ImDrawList* drawList) noexcept
 
 void Cheats::Run()
 {
+	Watermark::Render();
+
+	CheatList::Render();
+
 	// Show menu
 	static std::chrono::time_point LastTimePoint = std::chrono::steady_clock::now();
 	auto CurTimePoint = std::chrono::steady_clock::now();
@@ -705,8 +711,6 @@ void Cheats::Run()
 	{
 		TriggerBot::Run(LocalEntity);
 	}
-
-	Watermark::Render();
 
 	if (MenuConfig::AimBot)
 	{

@@ -83,6 +83,8 @@ namespace MenuConfig
 	inline bool watermarkuser = true;
 	inline bool watermarkfps = true;
 	inline bool watermarktime = true;
+
+	inline bool CheatList = false;
 }
 
 namespace CrosshairConfig

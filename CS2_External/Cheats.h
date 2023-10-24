@@ -5,6 +5,7 @@
 #include "Radar/Radar.h"
 #include "TriggerBot.hpp"
 #include "Utils/Watermarkshit.hpp"
+#include "Utils/ListFeatures.hpp"
 
 namespace Cheats
 {

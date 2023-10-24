@@ -170,6 +170,7 @@
     <ClInclude Include="Utils\Format.hpp" />
     <ClInclude Include="Utils\Globals.hpp" />
     <ClInclude Include="Utils\Globalvars.hpp" />
+    <ClInclude Include="Utils\ListFeatures.hpp" />
     <ClInclude Include="Utils\style.hpp" />
     <ClInclude Include="TriggerBot.hpp" />
     <ClInclude Include="Utils\ConfigMenu.hpp" />
