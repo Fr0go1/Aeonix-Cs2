@@ -139,9 +139,12 @@ void Cheats::Menu()
 				ImGui::Checkbox("WeaponText", &MenuConfig::ShowWeaponESP);
 				ImGui::Checkbox("PlayerName", &MenuConfig::ShowPlayerName);
 
-				ImGui::Checkbox("LineToEnemy", &MenuConfig::ShowLineToEnemy);
+				ImGui::Checkbox("SnapLine", &MenuConfig::ShowLineToEnemy);
 				ImGui::SameLine();
-				ImGui::ColorEdit4("##LineToEnemyColor", reinterpret_cast<float*>(&MenuConfig::LineToEnemyColor), ImGuiColorEditFlags_NoInputs);
+				ImGui::ColorEdit4("##SnapLine", reinterpret_cast<float*>(&MenuConfig::LineToEnemyColor), ImGuiColorEditFlags_NoInputs);
+				ImGui::SameLine();
+				ImGui::SetNextItemWidth(110);
+				ImGui::Combo("Line Pos", &MenuConfig::SnapLinePos, "Top\0Center\0Bottom");
 
 				ImGui::Checkbox("ESPPreview", &MenuConfig::ESPPreview);
 

@@ -64,7 +64,21 @@ namespace Render
 
 	void LineToEnemy(ImVec4 Rect, ImColor Color, float Thickness)
 	{
-		Gui.Line({ Rect.x + Rect.z / 2,Rect.y }, { Gui.Window.Size.x / 2,0 }, Color, Thickness);
+		switch (MenuConfig::SnapLinePos)
+		{
+		case 0:
+			Gui.Line({ Rect.x + Rect.z / 2,Rect.y }, { Gui.Window.Size.x / 2,0 }, Color, Thickness);
+			break;
+		case 1:
+			Gui.Line({ Rect.x + Rect.z / 2,Rect.y }, { Gui.Window.Size.x / 2, Gui.Window.Size.y / 2 }, Color, Thickness);
+			break;
+		case 2:
+			Gui.Line({ Rect.x + Rect.z / 2,Rect.y }, { Gui.Window.Size.x / 2, Gui.Window.Size.y }, Color, Thickness);
+			break;
+		default:
+			break;
+		}
+
 	}
 
 	void DrawFov(const CEntity& LocalEntity, float Size, ImColor Color, float Thickness)

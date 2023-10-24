@@ -48,6 +48,7 @@ namespace MyConfigSaver {
         configFile << "FovLineSize " << MenuConfig::FovLineSize << std::endl;
         configFile << "AimBotHotKey " << MenuConfig::AimBotHotKey << std::endl;
         configFile << "ShowLineToEnemy " << MenuConfig::ShowLineToEnemy << std::endl;
+        configFile << "SnapLinePos " << MenuConfig::SnapLinePos << std::endl;
         configFile << "RCSScale.x " << AimControl::RCSScale.x << std::endl;
         configFile << "RCSScale.y " << AimControl::RCSScale.y << std::endl;
         configFile << "ShowWeaponESP " << MenuConfig::ShowWeaponESP << std::endl;
@@ -147,6 +148,7 @@ namespace MyConfigSaver {
                 else if (key == "FovLineSize") iss >> MenuConfig::FovLineSize;
                 else if (key == "AimBotHotKey") { iss >> MenuConfig::AimBotHotKey; AimControl::SetHotKey(MenuConfig::AimBotHotKey); }
                 else if (key == "ShowLineToEnemy") iss >> MenuConfig::ShowLineToEnemy;
+                else if (key == "SnapLinePos") iss >> MenuConfig::SnapLinePos;
                 else if (key == "RCSScale.x") iss >> AimControl::RCSScale.x;
                 else if (key == "RCSScale.y") iss >> AimControl::RCSScale.y;
                 else if (key == "ShowWeaponESP") iss >> MenuConfig::ShowWeaponESP;

@@ -64,6 +64,7 @@ namespace MenuConfig
 
 	inline bool ShowLineToEnemy = false;
 	inline ImColor LineToEnemyColor = ImColor(255, 255, 255, 220);
+	inline int  SnapLinePos = 0;
 
 	inline bool ShowCrossHair = true;
 

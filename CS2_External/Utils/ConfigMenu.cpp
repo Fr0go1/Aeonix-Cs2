@@ -205,5 +205,6 @@ namespace ConfigMenu {
 		CrosshairConfig::VerticalLength = 6;
 		CrosshairConfig::drawOutLine = true;
 		CrosshairConfig::Gap = 8;
+		MenuConfig::SnapLinePos = 0;
 	}
 }
