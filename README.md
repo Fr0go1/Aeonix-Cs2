@@ -27,7 +27,7 @@ To clone you can open command prompt and type `git clone https://github.com/Fr0g
 
 Or if you just want to download you can download it from [Releases](https://github.com/Fr0go1/Aeonix-Cs2/releases/latest).
 
-<img src="https://github.com/Fr0go1/Aeonix-Cs2/blob/master/image9.png" width="1200" />
+<img src="https://github.com/Fr0go1/Aeonix-Cs2/blob/master/Screenshot%202023-10-24%20163716.png" width="1200" />
 
 ## Functions
 
