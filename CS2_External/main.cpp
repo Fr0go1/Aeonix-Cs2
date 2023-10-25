@@ -9,6 +9,9 @@
 
 int main()
 {
+
+	auto ProcessStatus = ProcessMgr.Attach("cs2.exe");
+
 	TCHAR documentsPath[MAX_PATH];
 	if (SHGetFolderPath(NULL, CSIDL_MYDOCUMENTS, NULL, 0, documentsPath) != S_OK) {
 		return 0;
@@ -32,7 +35,7 @@ int main()
 		std::cout << "[Success] Configuration directory already exists: " << configFilePath << std::endl;
 	}
 
-	auto ProcessStatus = ProcessMgr.Attach("cs2.exe");
+	
 	if (ProcessStatus != StatusCode::SUCCEED)
 	{
 		std::cout << "[ERROR] Failed to attach process, StatusCode:" << ProcessStatus << std::endl;
