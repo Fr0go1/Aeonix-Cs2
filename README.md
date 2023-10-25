@@ -11,14 +11,6 @@ I made a discord server https://discord.gg/2b66kqG2nK
 
 </details>
 
-<details>
-<summary>Features that are bugged</summary>
-  
-- Bunnyhop v2
-
-- Mouse_event aimbot (currently in the works)
-
-</details>
 If you get banned let me know here https://github.com/Fr0go1/Aeonix-Cs2/discussions/5.
 
 ## Download
