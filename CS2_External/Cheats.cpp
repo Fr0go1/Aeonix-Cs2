@@ -187,7 +187,8 @@ void Cheats::Menu()
 
 				if (MenuConfig::ESPPreview) {
 					ImGui::SetNextWindowSize(ImVec2(200, 250), ImGuiCond_FirstUseEver);
-					ImGui::SetNextWindowPos(ImVec2(ImGui::GetWindowPos().x + ImGui::GetWindowSize().x, ImGui::GetWindowPos().y), ImGuiCond_FirstUseEver);
+					const auto& window = ImGui::FindWindowByName("Aeonix");
+					ImGui::SetNextWindowPos(ImVec2(window->Pos.x + window->Size.x + ImGui::GetStyle().WindowPadding.x, window->Pos.y));
 					ImGui::End();
 					ImGui::Begin("ESPPreview", &MenuConfig::ESPPreview, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize);
 
