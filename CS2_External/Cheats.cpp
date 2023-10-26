@@ -292,6 +292,7 @@ void Cheats::Menu()
 			else if (tabb == 1) {
 				//aimbot
 				ImGui::SeparatorText("Aimbot");
+				ImGui::SeparatorText("Under a rework currently is fucked up");
 
 				ImGui::Checkbox("AimBot", &MenuConfig::AimBot);
 				ImGui::SameLine();
