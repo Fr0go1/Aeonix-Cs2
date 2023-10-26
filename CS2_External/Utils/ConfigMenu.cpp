@@ -30,7 +30,7 @@ namespace ConfigMenu {
 		static std::vector<std::string> configFiles;
 
 		configFiles.clear();
-		for (const auto& entry : std::filesystem::directory_iterator(MenuConfig::path))
+		for (const auto& entry : std::filesystem::directory_iterator(configFilePath))
 		{
 			if (entry.is_regular_file() && entry.path().extension() == ".config")
 			{
@@ -91,7 +91,7 @@ namespace ConfigMenu {
 			if (ImGui::Button("Yes", { 45.0f, 0.0f }))
 			{
 				std::string selectedConfigFile = configFiles[selectedConfig];
-				std::string fullPath = MenuConfig::path + "\\" + selectedConfigFile;
+				std::string fullPath = configFilePath + "\\" + selectedConfigFile;
 				if (std::remove(fullPath.c_str()) == 0)
 				{
 					configFiles.erase(configFiles.begin() + selectedConfig);

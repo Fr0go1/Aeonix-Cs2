@@ -67,13 +67,13 @@ namespace Render
 		switch (MenuConfig::SnapLinePos)
 		{
 		case 0:
-			Gui.Line({ Rect.x + Rect.z / 2,Rect.y }, { Gui.Window.Size.x / 2,0 }, Color, Thickness);
+			Gui.Line({ Rect.x + Rect.z / 2, Rect.y + Rect.w }, { Gui.Window.Size.x / 2,0 }, Color, Thickness);
 			break;
 		case 1:
-			Gui.Line({ Rect.x + Rect.z / 2,Rect.y }, { Gui.Window.Size.x / 2, Gui.Window.Size.y / 2 }, Color, Thickness);
+			Gui.Line({ Rect.x + Rect.z / 2, Rect.y + Rect.w }, { Gui.Window.Size.x / 2, Gui.Window.Size.y / 2 }, Color, Thickness);
 			break;
 		case 2:
-			Gui.Line({ Rect.x + Rect.z / 2,Rect.y }, { Gui.Window.Size.x / 2, Gui.Window.Size.y }, Color, Thickness);
+			Gui.Line({ Rect.x + Rect.z / 2, Rect.y + Rect.w }, { Gui.Window.Size.x / 2, Gui.Window.Size.y }, Color, Thickness);
 			break;
 		default:
 			break;

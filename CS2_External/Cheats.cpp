@@ -303,7 +303,7 @@ void Cheats::Menu()
 				}
 
 				float FovMin = 0.1f, FovMax = 89.f;
-				float SmoothMin = 0.1f, SmoothMax = 1.f;
+				float SmoothMin = 0.0f, SmoothMax = 1.f;
 				Gui.SliderScalarEx1("AimFov", ImGuiDataType_Float, &AimControl::AimFov, &FovMin, &FovMax, "%.1f", ImGuiSliderFlags_None);
 				ImGui::Checkbox("FovCircle", &MenuConfig::ShowAimFovRange);
 				ImGui::SameLine();

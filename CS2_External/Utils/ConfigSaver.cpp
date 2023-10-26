@@ -89,13 +89,13 @@ namespace MyConfigSaver {
         configFile << "watermarkfps " << MenuConfig::watermarkfps << std::endl;
         configFile << "watermarktime " << MenuConfig::watermarktime << std::endl;
         configFile << "watermarkuser " << MenuConfig::watermarkuser << std::endl;
-        configFile << "CheatList" << MenuConfig::CheatList << std::endl;
+        configFile << "CheatList " << MenuConfig::CheatList << std::endl;
         configFile.close();
         std::cout << "[Success] Configuration saved to " << MenuConfig::path + '\\' + filename << std::endl;
     }
 
-    void LoadConfig(const std::string& filename) {
-        std::ifstream configFile(MenuConfig::path + '\\' + filename);
+    void LoadConfig(const std::string& loadfilename) {
+        std::ifstream configFile(MenuConfig::path + '\\' + loadfilename);
         if (!configFile.is_open()) {
             std::cerr << "[Error] Could not open the configuration file." << std::endl;
             return;
@@ -106,7 +106,9 @@ namespace MyConfigSaver {
             std::istringstream iss(line);
             std::string key;
             if (iss >> key) {
+                std::cout << "Key: " << key << std::endl; // Debug output
                 if (iss >> key) {
+                    std::cout << "Value: " << key << std::endl; // Debug output
                     if (key == "ShowBoneESP") iss >> MenuConfig::ShowBoneESP;
                     else if (key == "VisibleEsp") iss >> MenuConfig::VisibleEsp;
                     else if (key == "HealthText") iss >> MenuConfig::HealthText;
@@ -178,9 +180,8 @@ namespace MyConfigSaver {
                     else if (key == "CheatList") iss >> MenuConfig::CheatList;
                 }
             }
-
-            configFile.close();
-            std::cout << "[Success] Configuration loaded from " << MenuConfig::path + '\\' + filename << std::endl;
         }
+        configFile.close();
+        std::cout << "[Success] Configuration loaded from " << MenuConfig::path + '\\' + loadfilename << std::endl;
     }
 }// namespace ConfigSaver

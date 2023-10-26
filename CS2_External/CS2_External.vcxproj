@@ -150,6 +150,7 @@
     <ClInclude Include="globals.cpp" />
     <ClInclude Include="mathstuff.h" />
     <ClInclude Include="MenuConfig.hpp" />
+    <ClInclude Include="Mouse.h" />
     <ClInclude Include="Offsets.h" />
     <ClInclude Include="OS-ImGui\imgui\imconfig.h" />
     <ClInclude Include="OS-ImGui\imgui\imgui.h" />
@@ -184,6 +185,7 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mouse.c" />
     <ClCompile Include="Offsets.cpp" />
     <ClCompile Include="OS-ImGui\imgui\imgui.cpp" />
     <ClCompile Include="OS-ImGui\imgui\imgui_demo.cpp" />
