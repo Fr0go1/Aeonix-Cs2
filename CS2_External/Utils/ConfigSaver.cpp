@@ -89,7 +89,7 @@ namespace MyConfigSaver {
         configFile << "watermarkfps " << MenuConfig::watermarkfps << std::endl;
         configFile << "watermarktime " << MenuConfig::watermarktime << std::endl;
         configFile << "watermarkuser " << MenuConfig::watermarkuser << std::endl;
-        configFile << "CheatList" << MenuConfig::CheatList << std::endl;
+        configFile << "CheatList " << MenuConfig::CheatList << std::endl;
         configFile.close();
         std::cout << "[Success] Configuration saved to " << MenuConfig::path + '\\' + filename << std::endl;
     }
