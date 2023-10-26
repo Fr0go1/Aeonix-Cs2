@@ -56,25 +56,49 @@ void Cheats::Menu()
 			if (ImGui::Button(ICON_FA_EYE, ImVec2(100, 35))) {
 				tabb = 0;
 			}
+			if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled))
+			{
+				ImGui::SetTooltip("See through walls! (left click box and bone for vis check)");
+			}
 			ImGui::Spacing();
 			if (ImGui::Button(ICON_FA_USER_CIRCLE, ImVec2(100, 35))) {
 				tabb = 1;
+			}
+			if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled))
+			{
+				ImGui::SetTooltip("Lock onto people");
 			}
 			ImGui::Spacing();
 			if (ImGui::Button(ICON_FA_FILE_CODE, ImVec2(100, 35))) {
 				tabb = 2;
 			}
+			if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled))
+			{
+				ImGui::SetTooltip("For settings that dont have a place");
+			}
 			ImGui::Spacing();
 			if (ImGui::Button(ICON_FA_HAND_POINTER, ImVec2(100, 35))) {
 				tabb = 3;
+			}
+			if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled))
+			{
+				ImGui::SetTooltip("Too lazy to click?");
 			}
 			ImGui::Spacing();
 			if (ImGui::Button(ICON_FA_FOLDER_OPEN, ImVec2(100, 35))) {
 				tabb = 4;
 			}
+			if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled))
+			{
+				ImGui::SetTooltip("Save your settings");
+			}
 			ImGui::Spacing();
 			if (ImGui::Button(ICON_FA_SUN, ImVec2(100, 35))) {
 				tabb = 5;
+			}
+			if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled))
+			{
+				ImGui::SetTooltip("Menu and game settings");
 			}
 		}
 		ImGui::EndChild();
