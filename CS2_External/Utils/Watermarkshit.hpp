@@ -22,7 +22,8 @@ namespace Watermark
             ImGui::Begin("Aeonix-Watermark", nullptr, windowFlags);
 
             static auto FrameRate = 1.0f;
-            FrameRate = 0.9f * FrameRate + 0.1f * GV.GetFrameCount();
+            //FrameRate = 0.9f * FrameRate + 0.1f * GV.GetFrameCount();
+            FrameRate = ImGui::GetIO().Framerate;
 
             //cheat name
             if (MenuConfig::watermarkcheat)

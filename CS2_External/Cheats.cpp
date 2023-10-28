@@ -127,7 +127,22 @@ void Cheats::Menu()
 				ImGui::ColorEdit4("##BoxColor", reinterpret_cast<float*>(&MenuConfig::BoxColor), ImGuiColorEditFlags_NoInputs);
 				ImGui::SameLine();
 				ImGui::SetNextItemWidth(110);
-				ImGui::Combo("BoxType", &MenuConfig::BoxType, "Normal\0Dynamic");
+				ImGui::Combo("BoxType", &MenuConfig::BoxType, "Normal\0Dynamic\0Filled");
+
+				ImGui::Checkbox("FilledBoxESP", &MenuConfig::FilledBox);
+				if (ImGui::IsItemClicked(1))
+				{
+					ImGui::OpenPopup("##Filledboxvis");
+				}
+				if (ImGui::BeginPopup("##Filledboxvis")) {
+					ImGui::TextUnformatted("Settings");
+					ImGui::Checkbox("VisibleFilledBoxESP", &MenuConfig::FilledVisBox);
+					ImGui::SameLine();
+					ImGui::ColorEdit4("##FilledBoxVisColor", reinterpret_cast<float*>(&MenuConfig::BoxFilledVisColor), ImGuiColorEditFlags_NoInputs);
+					ImGui::EndPopup();
+				}
+				ImGui::SameLine();
+				ImGui::ColorEdit4("##FilledBoxColor", reinterpret_cast<float*>(&MenuConfig::BoxFilledColor), ImGuiColorEditFlags_NoInputs);
 
 				ImGui::Checkbox("HealthBar", &MenuConfig::ShowHealthBar);
 				ImGui::SameLine();
@@ -231,6 +246,14 @@ void Cheats::Menu()
 						ImGui::GetWindowDrawList()->AddRect(rectStartPos, rectEndPos, IM_COL32(0, 0, 0, 255), 0.0f, ImDrawCornerFlags_All, 2.0f);//outline
 						ImGui::GetWindowDrawList()->AddRect(rectStartPos, rectEndPos, boxColor, 0.0f, ImDrawCornerFlags_All, 1.0f); // mainrec
 					}
+
+					if (MenuConfig::FilledBox) {
+						ImU32 boxFilledColor = MenuConfig::BoxFilledColor;
+						ImVec2 rectStartPos = centerPos;
+						ImVec2 rectEndPos(rectStartPos.x + rectSize.x, rectStartPos.y + rectSize.y);
+						ImGui::GetWindowDrawList()->AddRectFilled(rectStartPos, rectEndPos, boxFilledColor, 0.0f, ImDrawCornerFlags_All); // mainrec
+					}
+
 					if (MenuConfig::ShowEyeRay) {
 						ImU32 EyeC = MenuConfig::EyeRayColor;
 						ImVec2 lineStart(centerPos.x + 50, centerPos.y + 15);
@@ -578,14 +601,12 @@ void Cheats::Run()
 		DistanceToSight = Entity.GetBone().BonePosList[BONEINDEX::head].ScreenPos.DistanceTo({ Gui.Window.Size.x / 2,Gui.Window.Size.y / 2 });
 
 
-		if (DistanceToSight < MaxAimDistance)
-		{
+		if (DistanceToSight < MaxAimDistance) {
 			MaxAimDistance = DistanceToSight;
-			// From: https://github.com/redbg/CS2-Internal/blob/fc8e64430176a62f8800b7467884806708a865bb/src/include/Cheats.hpp#L129
+
 			if (!MenuConfig::VisibleCheck ||
 				Entity.Pawn.bSpottedByMask & (DWORD64(1) << (LocalPlayerControllerIndex)) ||
-				LocalEntity.Pawn.bSpottedByMask & (DWORD64(1) << (i)))
-			{
+				LocalEntity.Pawn.bSpottedByMask & (DWORD64(1) << (i))) {
 				AimPos = Entity.GetBone().BonePosList[MenuConfig::AimPositionIndex].Pos;
 				if (MenuConfig::AimPositionIndex == BONEINDEX::head)
 					AimPos.z -= 1.f;
@@ -610,9 +631,6 @@ void Cheats::Run()
 				Render::DrawBone(Entity, MenuConfig::BoneColor, 1.3);
 			}
 		}
-
-
-
 
 
 		// Draw eyeRay
@@ -651,6 +669,23 @@ void Cheats::Run()
 			}
 			else {
 				Gui.Rectangle({ Rect.x, Rect.y }, { Rect.z, Rect.w }, MenuConfig::BoxColor, 1.3);
+			}
+		}
+
+		// Filled Box
+		if (MenuConfig::FilledBox) {
+			if (MenuConfig::FilledVisBox) {
+				if ((Entity.Pawn.bSpottedByMask & (DWORD64(1) << LocalPlayerControllerIndex)) ||
+					(LocalEntity.Pawn.bSpottedByMask & (DWORD64(1) << i))) {
+
+					Gui.RectangleFilled({ Rect.x, Rect.y }, { Rect.z, Rect.w }, MenuConfig::BoxFilledVisColor);
+				}
+				else {
+					Gui.RectangleFilled({ Rect.x, Rect.y }, { Rect.z, Rect.w }, MenuConfig::BoxFilledColor);
+				}
+			}
+			else {
+				Gui.RectangleFilled({ Rect.x, Rect.y }, { Rect.z, Rect.w }, MenuConfig::BoxFilledColor);
 			}
 		}
 

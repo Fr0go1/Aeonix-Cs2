@@ -78,6 +78,8 @@ namespace MyConfigSaver {
         configFile << "ShowAimFovRange " << MenuConfig::ShowAimFovRange << std::endl;
         configFile << "AimFovRangeColor " << MenuConfig::AimFovRangeColor.Value.x << " " << MenuConfig::AimFovRangeColor.Value.y << " " << MenuConfig::AimFovRangeColor.Value.z << " " << MenuConfig::AimFovRangeColor.Value.w << std::endl;
         configFile << "VisibleColor " << MenuConfig::VisibleColor.Value.x << " " << MenuConfig::VisibleColor.Value.y << " " << MenuConfig::VisibleColor.Value.z << " " << MenuConfig::VisibleColor.Value.w << std::endl;
+        configFile << "BoxFilledColor " << MenuConfig::BoxFilledColor.Value.x << " " << MenuConfig::BoxFilledColor.Value.y << " " << MenuConfig::BoxFilledColor.Value.z << " " << MenuConfig::BoxFilledColor.Value.w << std::endl;
+        configFile << "BoxFilledVisColor " << MenuConfig::BoxFilledVisColor.Value.x << " " << MenuConfig::BoxFilledVisColor.Value.y << " " << MenuConfig::BoxFilledVisColor.Value.z << " " << MenuConfig::BoxFilledVisColor.Value.w << std::endl;
         configFile << "OBSBypass " << MenuConfig::OBSBypass << std::endl;
         configFile << "ShowDistance " << MenuConfig::ShowDistance << std::endl;
         configFile << "RadarBgAlpha " << MenuConfig::RadarBgAlpha << std::endl;
@@ -90,6 +92,8 @@ namespace MyConfigSaver {
         configFile << "watermarktime " << MenuConfig::watermarktime << std::endl;
         configFile << "watermarkuser " << MenuConfig::watermarkuser << std::endl;
         configFile << "CheatList " << MenuConfig::CheatList << std::endl;
+        configFile << "FilledBox " << MenuConfig::FilledBox << std::endl;
+        configFile << "FilledVisBox " << MenuConfig::FilledVisBox << std::endl;
         configFile.close();
         std::cout << "[Success] Configuration saved to " << MenuConfig::path + '\\' + filename << std::endl;
     }
@@ -167,6 +171,8 @@ namespace MyConfigSaver {
                 else if (key == "ShowAimFovRange") iss >> MenuConfig::ShowAimFovRange;
                 else if (key == "AimFovRangeColor") iss >> MenuConfig::AimFovRangeColor.Value.x >> MenuConfig::AimFovRangeColor.Value.y >> MenuConfig::AimFovRangeColor.Value.z >> MenuConfig::AimFovRangeColor.Value.w;
                 else if (key == "VisibleColor") iss >> MenuConfig::VisibleColor.Value.x >> MenuConfig::VisibleColor.Value.y >> MenuConfig::VisibleColor.Value.z >> MenuConfig::VisibleColor.Value.w;
+                else if (key == "BoxFilledColor") iss >> MenuConfig::BoxFilledColor.Value.x >> MenuConfig::BoxFilledColor.Value.y >> MenuConfig::BoxFilledColor.Value.z >> MenuConfig::BoxFilledColor.Value.w;
+                else if (key == "BoxFilledVisColor") iss >> MenuConfig::BoxFilledVisColor.Value.x >> MenuConfig::BoxFilledVisColor.Value.y >> MenuConfig::BoxFilledVisColor.Value.z >> MenuConfig::BoxFilledVisColor.Value.w;
                 else if (key == "OBSBypass") iss >> MenuConfig::OBSBypass;
                 else if (key == "ShowDistance") iss >> MenuConfig::ShowDistance;
                 else if (key == "RadarBgAlpha") iss >> MenuConfig::RadarBgAlpha;
@@ -178,6 +184,8 @@ namespace MyConfigSaver {
                 else if (key == "watermarktime") iss >> MenuConfig::watermarktime;
                 else if (key == "watermarkuser") iss >> MenuConfig::watermarkuser;
                 else if (key == "CheatList") iss >> MenuConfig::CheatList;
+                else if (key == "FilledBox") iss >> MenuConfig::FilledBox;
+                else if (key == "FilledVisBox") iss >> MenuConfig::FilledVisBox;
                 //}
             }
         }

@@ -8,6 +8,8 @@ namespace MenuConfig
 
 	inline bool ShowBoneESP = true;
 	inline bool ShowBoxESP = true;
+	inline bool FilledBox = true;
+	inline bool FilledVisBox = true;
 	inline bool ShowHealthBar = true;
 	inline bool ShowWeaponESP = true;
 	inline bool ShowEyeRay = true;
@@ -30,6 +32,8 @@ namespace MenuConfig
 	inline int  HealthBarType = 0;
 
 	inline ImColor BoneColor = ImColor(255, 255, 255, 255);
+	inline ImColor BoxFilledColor = ImColor(255, 255, 255, 255);
+	inline ImColor BoxFilledVisColor = ImColor(0, 0, 255, 255);
 	inline ImColor BoneVisColor = ImColor(0, 0, 255, 255);
 	inline ImColor BoxColor = ImColor(255, 255, 255, 255);
 	inline ImColor EyeRayColor = ImColor(255, 0, 0, 255);

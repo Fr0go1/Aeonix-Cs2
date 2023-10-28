@@ -59,6 +59,14 @@ namespace Offset
 		DWORD CurrentMapName = 0x0188;
 	} GlobalVar;
 
+	struct
+	{
+		DWORD m_hPawn = 0x5DC;
+		DWORD m_pObserverServices = 0x10C0;
+		DWORD m_hObserverTarget = 0x44;
+		DWORD m_hController = 0x122C;
+	} PlayerController;
+
 	namespace Signatures
 	{
 		const std::string GlobalVars = "48 89 0D ?? ?? ?? ?? 48 89 41";

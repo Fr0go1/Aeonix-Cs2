@@ -130,6 +130,18 @@ namespace Render
 		return ImVec4{ Pos.x,Pos.y,Size.x,Size.y };
 	}
 
+	/*void DrawCornerBox(const CEntity& Entity, ImColor Color, float Thickness)
+	{
+		Gui.RectangleFilled(x + borderPx, y, w / 3, borderPx, color);
+		Gui.RectangleFilled(x + w - w / 3 + borderPx, y, w / 3, borderPx, color);
+		Gui.RectangleFilled(x, y, borderPx, h / 3, color);
+		Gui.RectangleFilled(x, y + h - h / 3 + borderPx * 2, borderPx, h / 3, color);
+		Gui.RectangleFilled(x + borderPx, y + h + borderPx, w / 3, borderPx, color);
+		Gui.RectangleFilled(x + w - w / 3 + borderPx, y + h + borderPx, w / 3, borderPx, color);
+		Gui.RectangleFilled(x + w + borderPx, y, borderPx, h / 3, color);
+		Gui.RectangleFilled(x + w + borderPx, y + h - h / 3 + borderPx * 2, borderPx, h / 3, color);
+	}*/
+
 	void DrawBone(const CEntity& Entity, ImColor Color, float Thickness)
 	{
 		BoneJointPos Previous, Current;
