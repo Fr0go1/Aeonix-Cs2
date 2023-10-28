@@ -168,6 +168,7 @@
     <ClInclude Include="Radar\Radar.h" />
     <ClInclude Include="Render.hpp" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Utils\Bomb.hpp" />
     <ClInclude Include="Utils\Format.hpp" />
     <ClInclude Include="Utils\Globals.hpp" />
     <ClInclude Include="Utils\Globalvars.hpp" />

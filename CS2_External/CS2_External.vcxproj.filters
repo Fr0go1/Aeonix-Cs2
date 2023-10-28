@@ -130,6 +130,7 @@
     <ClInclude Include="Utils\ListFeatures.hpp" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="Utils\Spec.hpp" />
+    <ClInclude Include="Utils\Bomb.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OS-ImGui\imgui\imgui.cpp">

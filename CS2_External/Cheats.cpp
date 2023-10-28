@@ -345,7 +345,7 @@ void Cheats::Menu()
 				ImGui::SameLine();
 				HotKey(&AimControl::HotKey, ImVec2(95, 28));
 
-				if (ImGui::Combo("AimKey", &MenuConfig::AimBotHotKey, "MENU\0RBUTTON\0XBUTTON1\0XBUTTON2\0CAPITAL\0SHIFT\0CONTROL"))
+				if (ImGui::Combo("AimKey", &MenuConfig::AimBotHotKey, "MENU\0LBUTTON\0RBUTTON\0XBUTTON1\0XBUTTON2\0CAPITAL\0SHIFT\0CONTROL"))
 				{
 					AimControl::SetHotKey(MenuConfig::AimBotHotKey);
 				}
@@ -764,8 +764,6 @@ void Cheats::Run()
 	if (MenuConfig::ShowCrossHair) {
 		RenderCrossHair(ImGui::GetBackgroundDrawList());
 	}
-
-
 
 	// TriggerBot
 	if (MenuConfig::TriggerBot && GetAsyncKeyState(TriggerBot::HotKey))

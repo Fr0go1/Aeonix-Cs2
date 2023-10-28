@@ -57,6 +57,9 @@ namespace Offset
 		DWORD CurrentNetchan = 0x0048;
 		DWORD CurrentMap = 0x0180;
 		DWORD CurrentMapName = 0x0188;
+		DWORD m_vecAbsOrigin = 0xC8;
+		DWORD m_pGameSceneNode = 0x310;
+		DWORD dwPlantedC4 = 0x188BFE0;
 	} GlobalVar;
 
 	struct
