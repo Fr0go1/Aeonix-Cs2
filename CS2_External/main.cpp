@@ -68,7 +68,7 @@ int main()
 	std::cout << Format("[Offset] LocalPlayerPawn:%llX\n", Offset::LocalPlayerPawn);
 	std::cout << Format("[Offset] ForceJump:%llX\n", Offset::ForceJump);
 
-	std::cout << "[Success] Runing..." << std::endl;
+	std::cout << "[Success] Running..." << std::endl;
 
 	try
 	{
