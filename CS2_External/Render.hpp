@@ -243,7 +243,7 @@ namespace Render
 		this->RectPos = Pos;
 		this->RectSize = Size;
 
-		float AnimationSpeed = 1.0f;
+		float AnimationSpeed = 1.2f;
 		float Proportion = CurrentHealth / MaxHealth;
 
 		float BarWidth = Size.x * Proportion;
@@ -285,7 +285,7 @@ namespace Render
 		this->RectPos = Pos;
 		this->RectSize = Size;
 
-		float AnimationSpeed = 1.0f;
+		float AnimationSpeed = 1.2f;
 		float Proportion = CurrentHealth / MaxHealth;
 		float Height = RectSize.y * Proportion;
 
