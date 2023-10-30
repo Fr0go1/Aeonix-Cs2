@@ -6,6 +6,8 @@ I made a discord server https://discord.gg/2b66kqG2nK
 
 TODO list https://github.com/Fr0go1/Aeonix-Cs2/blob/master/TODO
 
+[Read Me](https://github.com/Fr0go1/Aeonix-Cs2/blob/master/LICENSE)
+
 <details>
 <summary>Features that might get you banned</summary>
   
