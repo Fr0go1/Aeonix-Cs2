@@ -19,29 +19,29 @@ namespace Offset
 		DWORD TeamID = 0x3BF;
 		DWORD IsAlive = 0x7C4;
 		DWORD PlayerPawn = 0x7BC;
-		DWORD iszPlayerName = 0x610;
+		DWORD iszPlayerName = 0x720;
 	}Entity;
 
 	struct
 	{
-		DWORD Pos = 0x1214;
+		DWORD Pos = 0x1224;
 		DWORD MaxHealth = 0x328;
 		DWORD CurrentHealth = 0x32C;
 		DWORD GameSceneNode = 0x310;
 		DWORD BoneArray = 0x1E0;
-		DWORD angEyeAngles = 0x14F8;
-		DWORD vecLastClipCameraPos = 0x1274;
-		DWORD pClippingWeapon = 0x1290;
-		DWORD iShotsFired = 0x1400;
-		DWORD flFlashDuration = 0x1450;
-		DWORD aimPunchAngle = 0x16FC;
-		DWORD aimPunchCache = 0x1720;
-		DWORD iIDEntIndex = 0x1524;
+		DWORD angEyeAngles = 0x1508;
+		DWORD vecLastClipCameraPos = 0x1284;
+		DWORD pClippingWeapon = 0x12A0;
+		DWORD iShotsFired = 0x1410;
+		DWORD flFlashDuration = 0x1460;
+		DWORD aimPunchAngle = 0x170C;
+		DWORD aimPunchCache = 0x1730;
+		DWORD iIDEntIndex = 0x1534;
 		DWORD iTeamNum = 0x3BF;
 		DWORD CameraServices = 0x10E0;
 		DWORD iFovStart = 0x214;
 		DWORD fFlags = 0x3C8;
-		DWORD bSpottedByMask = 0x1618 + 0xC; // entitySpottedState + bSpottedByMask
+        	DWORD bSpottedByMask = 0x1628 + 0xC; // entitySpottedState + bSpottedByMask
 	}Pawn;
 
 	struct
